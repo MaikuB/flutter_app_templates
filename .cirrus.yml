@@ -1,17 +1,14 @@
-create_material_bottomnavigation_provider_mobx_native_projects_task:
-  container:
-    image: cirrusci/flutter:stable
-  create_script:
-    - cd material_bottomnavigation_provider_mobx
-    - flutter create .
-
-unit_widget_tests_material_bottomnavigation_provider_mobx_task:
-  depends_on: create_material_bottomnavigation_provider_mobx_native_projects
+task:
+  name: Unit tests and widget tests
+  env:
+    matrix:
+      template: material_bottomnavigation_provider_mobx
   container:
     image: cirrusci/flutter:stable
   pub_cache:
     folder: ~/.pub-cache
   test_script:
-    - cd material_bottomnavigation_provider_mobx
-    - flutter test test/**/*.dart
+    - cd $template
+    - flutter create .
+    - flutter test
 

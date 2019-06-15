@@ -21,12 +21,11 @@ void main() {
 
     test('check flutter driver health', () async {
       Health health = await driver.checkHealth();
-      print(health.status);
+      print('flutter driver status: ${health.status}');
     });
 
     test('starts on home page', () async {
       await driver.waitFor(find.byValueKey('homePage'));
-      print('on the home page');
     });
 
     test('switching pages works', () async {
@@ -38,36 +37,30 @@ void main() {
     test('increment counter on home page', () async {
       expect(await driver.getText(homePageCounterFinder),
           'You have pushed the button on this page 0 time(s)');
-      print('counter on home page starts at 0');
       await driver.tap(incrementButtonFinder);
       expect(await driver.getText(homePageCounterFinder),
           'You have pushed the button on this page 1 time(s)');
-      print('counter on home page is now set to 1');
     });
 
     test('increment counter on dashboard page', () async {
       await _switchToDashboardPage(driver, bottomNavigationBarFinder);
       expect(await driver.getText(dashboardPageCounterFinder),
           'You have pushed the button on this page 0 time(s)');
-      print('counter on dashboard page starts at 0');
       await driver.tap(incrementButtonFinder);
       await driver.tap(incrementButtonFinder);
       expect(await driver.getText(dashboardPageCounterFinder),
           'You have pushed the button on this page 2 time(s)');
-      print('counter on dashboard page is now set to 2');
     });
 
     test('increment counter on notifications page', () async {
       await _switchToNotificationsPage(driver, bottomNavigationBarFinder);
       expect(await driver.getText(notificationsPageCounterFinder),
           'You have pushed the button on this page 0 time(s)');
-      print('counter on notifications page starts at 0');
       await driver.tap(incrementButtonFinder);
       await driver.tap(incrementButtonFinder);
       await driver.tap(incrementButtonFinder);
       expect(await driver.getText(notificationsPageCounterFinder),
           'You have pushed the button on this page 3 time(s)');
-      print('counter on notifications page is now set to 3');
       await _switchToHomePage(driver, bottomNavigationBarFinder);
     });
 
@@ -90,7 +83,6 @@ Future _switchToNotificationsPage(
   await driver.waitFor(bottomNavigationBarFinder);
   await driver.tap(find.text('Notifications'));
   await driver.waitFor(find.byValueKey('notificationsPageTitle'));
-  print('switched to notifications page');
 }
 
 Future _switchToDashboardPage(
@@ -98,7 +90,6 @@ Future _switchToDashboardPage(
   await driver.waitFor(bottomNavigationBarFinder);
   await driver.tap(find.text('Dashboard'));
   await driver.waitFor(find.byValueKey('dashboardPageTitle'));
-  print('switched to dashboard page');
 }
 
 Future _switchToHomePage(
@@ -106,5 +97,4 @@ Future _switchToHomePage(
   await driver.waitFor(bottomNavigationBarFinder);
   await driver.tap(find.text('Home'));
   await driver.waitFor(find.byValueKey('homePageTitle'));
-  print('switched to hone page');
 }
