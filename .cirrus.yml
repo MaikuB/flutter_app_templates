@@ -26,7 +26,7 @@ create_material_bottomnavigation_provider_mobx_native_projects_task:
 #     - cd material_bottomnavigation_provider_mobx
 #     - flutter build ios --no-codesign
 
-unit_widget_test_material_bottomnavigation_provider_mobx_task:
+unit_widget_tests_material_bottomnavigation_provider_mobx_task:
   depends_on: create_material_bottomnavigation_provider_mobx_native_projects_task
   container:
     image: cirrusci/flutter:stable
@@ -35,5 +35,22 @@ unit_widget_test_material_bottomnavigation_provider_mobx_task:
   test_script:
     - cd material_bottomnavigation_provider_mobx
     - flutter test test/**/*.dart
+
+integration_tests_material_bottomnavigation_provider_mobx_task:
+  depends_on: create_material_bottomnavigation_provider_mobx_native_projects_task
+  container:
+    image: cirrusci/flutter:stable
+  pub_cache:
+    folder: ~/.pub-cache
+  create_device_script: >
+    echo no | avdmanager create avd --force \
+      -n test \
+      k "system-images;android-28;default;armeabi-v7a"
+  start_emulator_background_script:
+    - $ANDROID_HOME/emulator/emulator -avd test -no-audio -no-window
+  wait_for_emulator_script: adb wait-for-device
+  test_script:
+    - cd material_bottomnavigation_provider_mobx
+    - flutter drive --target=test_driver/app.dart
 
 
