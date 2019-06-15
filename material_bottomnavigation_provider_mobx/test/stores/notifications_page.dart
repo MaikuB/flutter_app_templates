@@ -1,11 +1,11 @@
-import 'package:material_bottomnavigation_provider_mobx/stores/home_store.dart';
+import 'package:material_bottomnavigation_provider_mobx/stores/notifications_store.dart';
 import 'package:test/test.dart';
 
 void main() {
-  group('Home store', () {
-    HomeStore store;
+  group('Notifications store', () {
+    NotificationsStore store;
     setUpAll(() {
-      store = HomeStore();
+      store = NotificationsStore();
     });
     test('counter starts at 0', () {
       expect(store.counter, 0);
