@@ -19,6 +19,8 @@ The application is similar to the one created when creating an Android applicati
     - `app_test.dart` - for doing tests on widgets that are at the top-level e.g. checking bottom navigation bar exists and works
 - `test_driver` - this folder stores all of the integration tests. Makes use of the `flutter_driver` library
 
+More details on how state is managed and how the application looks can be found in [this blog post](https://crossingthestreams.io/flutter-application-templates/)
+
 ## Executing unit tests and widget tests
 
 To execute unit tests, run the following command from the root folder of the application
