@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:material_bottomnavigation_provider_mobx/app.dart';
+import 'package:material_bottomnavigation_provider_mobx/main.dart';
 
 void main() {
   final homePageFinder = find.byKey(Key('homePage'));
