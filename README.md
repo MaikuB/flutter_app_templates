@@ -26,4 +26,8 @@ Note that out of the box, Flutter will combine the organisation and name of the 
 flutter create --org <organisation> -a <android_language> -i <ios_language> .
 ```
 
-where `organisation>` is your organisation in reverse domain name notation. For example, given the `crossingthestreams.io` domain, the organisation would be specified as `io.crossingthestreams`. <android_language> is either `java` or `kotlin` and <ios_language> is either `objc` or `swift`. The tooling will generate a `widget_test.dart` file within the `test` folder that can be deleted. Successfully executing all of the steps would create an application with the desired application name, bundle identifier and create the appropriate Android and iOS project files. From there you should be able to run the application. You can then the `pubspec.yaml` to your liking (e.g. to update the dependencies) 
+where `organisation>` is your organisation in reverse domain name notation. For example, given the `crossingthestreams.io` domain, the organisation would be specified as `io.crossingthestreams`. <android_language> is either `java` or `kotlin` and <ios_language> is either `objc` or `swift`. The tooling will generate a `widget_test.dart` file within the `test` folder that can be deleted. Successfully executing all of the steps would create an application with the desired application name, bundle identifier and create the appropriate Android and iOS project files. From there you should be able to run the application. You can then the `pubspec.yaml` to your liking (e.g. to update the dependencies). Note that the templates have unit tests, widget tests and integration tests included. Therefore, if you make changes then these tests may need to be updated to stop them from failing.
+
+## Contributions
+
+Feel free to submit PRs to share templates that you feel would be useful to others. If you do, please include tests and ensure the steps above could be use on the template you're sharing.
