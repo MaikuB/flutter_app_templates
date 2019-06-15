@@ -14,13 +14,13 @@ void main() {
           BottomNavigationDestination.Home);
     });
     test('select at dashboard option works', () {
-      store.selectBottomNavigationMenuOption(1);
+      store.selectBottomNavigationDestination(1);
       expect(store.selectedBottomNavigationDestinationIndex, 1);
       expect(store.selectedBottomNavigationDestination,
           BottomNavigationDestination.Dashboard);
     });
     test('select at notifications option works', () {
-      store.selectBottomNavigationMenuOption(2);
+      store.selectBottomNavigationDestination(2);
       expect(store.selectedBottomNavigationDestinationIndex, 2);
       expect(store.selectedBottomNavigationDestination,
           BottomNavigationDestination.Notifications);

@@ -74,7 +74,7 @@ class App extends StatelessWidget {
                       },
                     ).toList(),
                     onTap: (index) =>
-                        store.selectBottomNavigationMenuOption(index),
+                        store.selectBottomNavigationDestination(index),
                   ),
                   floatingActionButton: FloatingActionButton(
                     key: Key('incrementButton'),

@@ -40,10 +40,10 @@ mixin _$AppStore on AppStoreBase, Store {
   final _$AppStoreBaseActionController = ActionController(name: 'AppStoreBase');
 
   @override
-  void selectBottomNavigationMenuOption(int index) {
+  void selectBottomNavigationDestination(int index) {
     final _$actionInfo = _$AppStoreBaseActionController.startAction();
     try {
-      return super.selectBottomNavigationMenuOption(index);
+      return super.selectBottomNavigationDestination(index);
     } finally {
       _$AppStoreBaseActionController.endAction(_$actionInfo);
     }

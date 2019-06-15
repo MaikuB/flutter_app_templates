@@ -17,7 +17,7 @@ abstract class AppStoreBase with Store {
       bottomNavigationDestinations[selectedBottomNavigationDestinationIndex];
 
   @action
-  void selectBottomNavigationMenuOption(int index) {
+  void selectBottomNavigationDestination(int index) {
     selectedBottomNavigationDestinationIndex = index;
   }
 }
