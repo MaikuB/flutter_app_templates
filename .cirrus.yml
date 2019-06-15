@@ -9,6 +9,5 @@ task:
     folder: ~/.pub-cache
   test_script:
     - cd $template
-    - flutter create .
     - flutter test
 
