@@ -5,7 +5,7 @@ import 'pages/dashboard_page.dart';
 import 'pages/notifications_page.dart';
 
 class PageContainer extends StatelessWidget {
-  final BottomNavigationMenuOption bottomNavigationMenuOption;
+  final BottomNavigationDestination bottomNavigationMenuOption;
 
   const PageContainer(this.bottomNavigationMenuOption, {Key key})
       : super(key: key);
@@ -13,11 +13,11 @@ class PageContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     switch (bottomNavigationMenuOption) {
-      case BottomNavigationMenuOption.Home:
+      case BottomNavigationDestination.Home:
         return HomePage(key: Key('homePage'));
-      case BottomNavigationMenuOption.Dashboard:
+      case BottomNavigationDestination.Dashboard:
         return DashboardPage(key: Key('dashboardPage'));
-      case BottomNavigationMenuOption.Notifications:
+      case BottomNavigationDestination.Notifications:
         return NotificationsPage(key: Key('notificationsPage'));
     }
     return null;

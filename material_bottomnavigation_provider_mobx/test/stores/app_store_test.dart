@@ -11,19 +11,19 @@ void main() {
     test('starts at home option', () {
       expect(store.selectedBottomNavigationMenuIndex, 0);
       expect(store.selectedBottomNavigationMenuOption,
-          BottomNavigationMenuOption.Home);
+          BottomNavigationDestination.Home);
     });
     test('select at dashboard option works', () {
       store.selectBottomNavigationMenuOption(1);
       expect(store.selectedBottomNavigationMenuIndex, 1);
       expect(store.selectedBottomNavigationMenuOption,
-          BottomNavigationMenuOption.Dashboard);
+          BottomNavigationDestination.Dashboard);
     });
     test('select at notifications option works', () {
       store.selectBottomNavigationMenuOption(2);
       expect(store.selectedBottomNavigationMenuIndex, 2);
       expect(store.selectedBottomNavigationMenuOption,
-          BottomNavigationMenuOption.Notifications);
+          BottomNavigationDestination.Notifications);
     });
   });
 }

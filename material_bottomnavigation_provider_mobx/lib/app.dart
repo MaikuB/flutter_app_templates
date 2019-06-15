@@ -50,17 +50,17 @@ class App extends StatelessWidget {
                     items: store.bottomNavigationMenuOptions.map(
                       (option) {
                         switch (option) {
-                          case BottomNavigationMenuOption.Home:
+                          case BottomNavigationDestination.Home:
                             return BottomNavigationBarItem(
                               icon: Icon(Icons.home),
                               title: Text('Home'),
                             );
-                          case BottomNavigationMenuOption.Dashboard:
+                          case BottomNavigationDestination.Dashboard:
                             return BottomNavigationBarItem(
                               icon: Icon(Icons.dashboard),
                               title: Text('Dashboard'),
                             );
-                          case BottomNavigationMenuOption.Notifications:
+                          case BottomNavigationDestination.Notifications:
                             return BottomNavigationBarItem(
                               icon: Icon(Icons.notifications),
                               title: Text('Notifications'),
@@ -75,13 +75,13 @@ class App extends StatelessWidget {
                     key: Key('incrementButton'),
                     onPressed: () {
                       switch (store.selectedBottomNavigationMenuOption) {
-                        case BottomNavigationMenuOption.Home:
+                        case BottomNavigationDestination.Home:
                           Provider.of<HomeStore>(context).increment();
                           break;
-                        case BottomNavigationMenuOption.Dashboard:
+                        case BottomNavigationDestination.Dashboard:
                           Provider.of<DashboardStore>(context).increment();
                           break;
-                        case BottomNavigationMenuOption.Notifications:
+                        case BottomNavigationDestination.Notifications:
                           Provider.of<NotificationsStore>(context).increment();
                           break;
                       }

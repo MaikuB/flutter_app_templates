@@ -5,14 +5,14 @@ part 'app_store.g.dart';
 class AppStore = AppStoreBase with _$AppStore;
 
 abstract class AppStoreBase with Store {
-  List<BottomNavigationMenuOption> bottomNavigationMenuOptions =
-      BottomNavigationMenuOption.values;
+  List<BottomNavigationDestination> bottomNavigationMenuOptions =
+      BottomNavigationDestination.values;
 
   @observable
   int selectedBottomNavigationMenuIndex = 0;
 
   @computed
-  BottomNavigationMenuOption get selectedBottomNavigationMenuOption =>
+  BottomNavigationDestination get selectedBottomNavigationMenuOption =>
       bottomNavigationMenuOptions[selectedBottomNavigationMenuIndex];
 
   @action

@@ -9,13 +9,13 @@ part of 'app_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars
 
 mixin _$AppStore on AppStoreBase, Store {
-  Computed<BottomNavigationMenuOption>
+  Computed<BottomNavigationDestination>
       _$selectedBottomNavigationMenuOptionComputed;
 
   @override
-  BottomNavigationMenuOption get selectedBottomNavigationMenuOption =>
+  BottomNavigationDestination get selectedBottomNavigationMenuOption =>
       (_$selectedBottomNavigationMenuOptionComputed ??=
-              Computed<BottomNavigationMenuOption>(
+              Computed<BottomNavigationDestination>(
                   () => super.selectedBottomNavigationMenuOption))
           .value;
 

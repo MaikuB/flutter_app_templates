@@ -1,1 +1,1 @@
-enum BottomNavigationMenuOption { Home, Dashboard, Notifications }
+enum BottomNavigationDestination { Home, Dashboard, Notifications }
