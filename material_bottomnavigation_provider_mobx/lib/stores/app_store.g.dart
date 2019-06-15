@@ -10,31 +10,31 @@ part of 'app_store.dart';
 
 mixin _$AppStore on AppStoreBase, Store {
   Computed<BottomNavigationDestination>
-      _$selectedBottomNavigationMenuOptionComputed;
+      _$selectedBottomNavigationDestinationComputed;
 
   @override
-  BottomNavigationDestination get selectedBottomNavigationMenuOption =>
-      (_$selectedBottomNavigationMenuOptionComputed ??=
+  BottomNavigationDestination get selectedBottomNavigationDestination =>
+      (_$selectedBottomNavigationDestinationComputed ??=
               Computed<BottomNavigationDestination>(
-                  () => super.selectedBottomNavigationMenuOption))
+                  () => super.selectedBottomNavigationDestination))
           .value;
 
-  final _$selectedBottomNavigationMenuIndexAtom =
-      Atom(name: 'AppStoreBase.selectedBottomNavigationMenuIndex');
+  final _$selectedBottomNavigationDestinationIndexAtom =
+      Atom(name: 'AppStoreBase.selectedBottomNavigationDestinationIndex');
 
   @override
-  int get selectedBottomNavigationMenuIndex {
-    _$selectedBottomNavigationMenuIndexAtom.reportObserved();
-    return super.selectedBottomNavigationMenuIndex;
+  int get selectedBottomNavigationDestinationIndex {
+    _$selectedBottomNavigationDestinationIndexAtom.reportObserved();
+    return super.selectedBottomNavigationDestinationIndex;
   }
 
   @override
-  set selectedBottomNavigationMenuIndex(int value) {
-    _$selectedBottomNavigationMenuIndexAtom.context
+  set selectedBottomNavigationDestinationIndex(int value) {
+    _$selectedBottomNavigationDestinationIndexAtom.context
         .checkIfStateModificationsAreAllowed(
-            _$selectedBottomNavigationMenuIndexAtom);
-    super.selectedBottomNavigationMenuIndex = value;
-    _$selectedBottomNavigationMenuIndexAtom.reportChanged();
+            _$selectedBottomNavigationDestinationIndexAtom);
+    super.selectedBottomNavigationDestinationIndex = value;
+    _$selectedBottomNavigationDestinationIndexAtom.reportChanged();
   }
 
   final _$AppStoreBaseActionController = ActionController(name: 'AppStoreBase');

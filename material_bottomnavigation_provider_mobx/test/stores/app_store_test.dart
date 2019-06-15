@@ -9,20 +9,20 @@ void main() {
       store = AppStore();
     });
     test('starts at home option', () {
-      expect(store.selectedBottomNavigationMenuIndex, 0);
-      expect(store.selectedBottomNavigationMenuOption,
+      expect(store.selectedBottomNavigationDestinationIndex, 0);
+      expect(store.selectedBottomNavigationDestination,
           BottomNavigationDestination.Home);
     });
     test('select at dashboard option works', () {
       store.selectBottomNavigationMenuOption(1);
-      expect(store.selectedBottomNavigationMenuIndex, 1);
-      expect(store.selectedBottomNavigationMenuOption,
+      expect(store.selectedBottomNavigationDestinationIndex, 1);
+      expect(store.selectedBottomNavigationDestination,
           BottomNavigationDestination.Dashboard);
     });
     test('select at notifications option works', () {
       store.selectBottomNavigationMenuOption(2);
-      expect(store.selectedBottomNavigationMenuIndex, 2);
-      expect(store.selectedBottomNavigationMenuOption,
+      expect(store.selectedBottomNavigationDestinationIndex, 2);
+      expect(store.selectedBottomNavigationDestination,
           BottomNavigationDestination.Notifications);
     });
   });

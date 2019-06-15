@@ -45,13 +45,14 @@ class App extends StatelessWidget {
                   ),
                   body: SafeArea(
                     child: PageContainer(
-                      store.selectedBottomNavigationMenuOption,
+                      store.selectedBottomNavigationDestination,
                     ),
                   ),
                   bottomNavigationBar: BottomNavigationBar(
                     key: Key('bottomNavigationBar'),
-                    currentIndex: store.selectedBottomNavigationMenuIndex,
-                    items: store.bottomNavigationMenuOptions.map(
+                    currentIndex:
+                        store.selectedBottomNavigationDestinationIndex,
+                    items: AppStoreBase.bottomNavigationDestinations.map(
                       (option) {
                         switch (option) {
                           case BottomNavigationDestination.Home:
@@ -78,7 +79,7 @@ class App extends StatelessWidget {
                   floatingActionButton: FloatingActionButton(
                     key: Key('incrementButton'),
                     onPressed: () {
-                      switch (store.selectedBottomNavigationMenuOption) {
+                      switch (store.selectedBottomNavigationDestination) {
                         case BottomNavigationDestination.Home:
                           Provider.of<HomeStore>(context).increment();
                           break;
@@ -118,7 +119,8 @@ class PageContainer extends StatelessWidget {
         return DashboardPage(key: Key('dashboardPage'));
       case BottomNavigationDestination.Notifications:
         return NotificationsPage(key: Key('notificationsPage'));
+      default:
+        return HomePage(key: Key('homePage'));
     }
-    return null;
   }
 }
