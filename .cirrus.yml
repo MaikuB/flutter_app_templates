@@ -1,7 +1,9 @@
-create_native_projects_task:
+create_material_bottomnavigation_provider_mobx_native_projects_task:
   container:
     image: cirrusci/flutter:stable
-  create_script: flutter create .
+  create_script:
+    - cd material_bottomnavigation_provider_mobx
+    - flutter create .
 
 build_material_bottomnavigation_provider_mobx_task:
   depends_on: create_native_projects_task
