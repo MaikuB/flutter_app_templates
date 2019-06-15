@@ -1,31 +1,12 @@
-create_native_projects_task:
+create_material_bottomnavigation_provider_mobx_native_projects_task:
   container:
     image: cirrusci/flutter:stable
-  create_script: flutter create .
-
-build_material_bottomnavigation_provider_mobx_task:
-  depends_on: create_native_projects_task
-  container:
-    image: cirrusci/flutter:stable
-  pub_cache:
-    folder: ~/.pub-cache
-  build_script:
+  create_script:
     - cd material_bottomnavigation_provider_mobx
-    - flutter build apk
+    - flutter create .
 
-build_material_bottomnavigation_provider_mobx_task:
-  depends_on: create_native_projects_task
-  osx_instance:
-    image: mojave-xcode-10.2-flutter
-  pub_cache:
-    folder: ~/.pub-cache
-  update_pods_script: pod repo update # to fetch all the latest versions
-  build_script:
-    - cd material_bottomnavigation_provider_mobx
-    - flutter build ios --no-codesign
-
-test_material_bottomnavigation_provider_mobx_task:
-  depends_on: create_native_projects_task
+unit_widget_tests_material_bottomnavigation_provider_mobx_task:
+  depends_on: create_material_bottomnavigation_provider_mobx_native_projects
   container:
     image: cirrusci/flutter:stable
   pub_cache:
@@ -33,4 +14,4 @@ test_material_bottomnavigation_provider_mobx_task:
   test_script:
     - cd material_bottomnavigation_provider_mobx
     - flutter test test/**/*.dart
-    - flutter drive --target=test_driver/app.dart
+
