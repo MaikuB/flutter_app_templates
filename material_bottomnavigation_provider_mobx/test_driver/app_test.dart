@@ -82,34 +82,6 @@ void main() {
       expect(await driver.getText(notificationsPageCounterFinder),
           'You have pushed the button on this page 3 time(s)');
     });
-
-    // group('switching views and incrementing on each view works', () async {
-    //   final incrementButtonFinder = find.byValueKey('incrementButton');
-    //   final homePageCounterFinder = find.byValueKey('homePageCounter');
-    //   final dashboardCounterFinder = find.byValueKey('dashboardCounter');
-    //   final notificationsPageCounterFinder =
-    //       find.byValueKey('notificationsPageCounter');
-    //   expect(await driver.getText(homePageCounterFinder),
-    //       'You have pushed the button on this page 0 time(s)');
-    //   print('counter on home page starts at 0');
-    //   await driver.tap(incrementButtonFinder);
-    //   expect(await driver.getText(homePageCounterFinder),
-    //       'You have pushed the button on this page 1 time(s)');
-    //   print('counter on home page is now set to 1');
-    //   await _switchToDashboardPage(driver, bottomNavigationBarFinder);
-    //   expect(await driver.getText(dashboardCounterFinder),
-    //       'You have pushed the button on this page 0 time(s)');
-    //   print('counter on dashboard page starts at 0');
-    //   await driver.tap(incrementButtonFinder);
-    //   await driver.tap(incrementButtonFinder);
-    // });
-    /*test('increments the counter', () async {
-      // First, tap the button.
-      await driver.tap(buttonFinder);
-
-      // Then, verify the counter text is incremented by 1.
-      expect(await driver.getText(counterTextFinder), "1");
-    });*/
   });
 }
 
