@@ -1,5 +1,7 @@
 # Flutter application templates
 
+[![Build Status](https://api.cirrus-ci.com/github/MaikuB/flutter_app_templates.svg)](https://cirrus-ci.com/github/MaikuB/flutter_app_templates)
+
 This repository is to used to maintain some templates that can form the basis of a Flutter application. These templates may be opinionated in how to structure applications. The intent is that these templates could help other developers get started sooner in the absence of being able specify templates to use to the `flutter create` command.
 
 ## Templates 
