@@ -1,17 +1,75 @@
-create_material_bottomnavigation_provider_mobx_native_projects_task:
-  container:
-    image: cirrusci/flutter:stable
-  create_script:
-    - cd material_bottomnavigation_provider_mobx
-    - flutter create .
-
-unit_widget_tests_material_bottomnavigation_provider_mobx_task:
-  depends_on: create_material_bottomnavigation_provider_mobx_native_projects
+task:
+  name: Unit tests and widget tests
+  env:
+    matrix:
+      template: material_bottomnavigation_provider_mobx
   container:
     image: cirrusci/flutter:stable
   pub_cache:
     folder: ~/.pub-cache
   test_script:
-    - cd material_bottomnavigation_provider_mobx
-    - flutter test test/**/*.dart
+    - cd $template
+    - flutter test
+
+task:
+  name: Integration tests for $template (Android)
+  only_if: $CIRRUS_PR == ''
+  skip: "!changesInclude('.cirrus.yml', '$template/*', '$template/**/*')"
+  env:
+    EMULATOR_API_LEVEL: 22
+    ANDROID_ABI: "default;armeabi-v7a"
+    matrix:
+      template: material_bottomnavigation_provider_mobx
+  container:
+    image: cirrusci/flutter:stable
+  pub_cache:
+    folder: ~/.pub-cache
+  create_native_projects_script:
+    - cd $template
+    - flutter create .
+  pin_emulator_script:
+    # Download a pinned version of the emulator since upgrades can cause issues
+    - ${ANDROID_HOME}/emulator/emulator -version
+    - emulator_version=5264690
+    - curl -fo emulator.zip "https://dl.google.com/android/repository/emulator-linux-$emulator_version.zip"
+    - rm -rf "${ANDROID_HOME}/emulator"
+    - unzip -q emulator.zip -d "${ANDROID_HOME}"
+    - rm -f emulator.zip
+    - ${ANDROID_HOME}/emulator/emulator -version
+  install_images_script: sdkmanager "system-images;android-$EMULATOR_API_LEVEL;$ANDROID_ABI"
+  create_device_script:
+    echo no | avdmanager create avd --force -n test -k "system-images;android-$EMULATOR_API_LEVEL;$ANDROID_ABI"
+  start_emulator_background_script:
+    $ANDROID_HOME/emulator/emulator -avd test -no-audio -no-window
+  wait_for_emulator_script:
+    - adb wait-for-device
+    - adb shell input keyevent 82
+  test_script: 
+    - cd $template
+    - flutter drive --target=test_driver/app.dart
+
+task:
+  name: Integration tests for $template (iOS)
+  only_if: $CIRRUS_PR == ''
+  skip: "!changesInclude('.cirrus.yml', '$template/*', '$template/**/*')"
+  osx_instance:
+    image: mojave-xcode-10.2-flutter
+  env:
+    matrix:
+      template: material_bottomnavigation_provider_mobx
+  container:
+    image: cirrusci/flutter:stable
+  pub_cache:
+    folder: ~/.pub-cache
+  create_native_projects_script:
+    - cd $template
+    - flutter create .
+  setup_script:
+    # create simulator
+    - udid=$(xcrun simctl create "iPhone X" com.apple.CoreSimulator.SimDeviceType.iPhone-X com.apple.CoreSimulator.SimRuntime.iOS-12-0)
+    # boot simulator
+    - xcrun simctl boot $udid
+  test_script: 
+    - cd $template
+    - flutter drive --target=test_driver/app.dart
 
