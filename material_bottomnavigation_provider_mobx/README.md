@@ -4,7 +4,11 @@ This is a template for creating a Flutter application that uses material design 
 
 ## Overview
 
-The application is similar to the one created when creating an Android application that has a bottom navigation activity. It has three bottom navigation destinations: Home, Dashboard and Notifications. Each destination has its own corresponding page and data store. The application is structured as follos
+The application is similar to the one created when creating an Android application that has a bottom navigation activity. It has three bottom navigation destinations: Home, Dashboard and Notifications.
+
+![Image of home page](https://crossingthestreams.io/content/images/2019/06/home-1.png) ![Image of dashboard page](https://crossingthestreams.io/content/images/2019/06/dashboard-1.png) ![Image of notifications page](https://crossingthestreams.io/content/images/2019/06/notifications-1.png)
+
+Each destination has its own corresponding page and data store. Tapping on the floating action button will increment the counter related to the page that is currently being viewed. The application is structured as follos
 
 - `lib`
   - `constants` - this folder is where all application-level constants are kept
