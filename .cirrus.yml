@@ -14,7 +14,7 @@ task:
 task:
   name: Integration tests for $template (Android)
   env:
-    EMULATOR_API_LEVEL: 28
+    EMULATOR_API_LEVEL: 22
     ANDROID_ABI: "default;armeabi-v7a"
     matrix:
       template: material_bottomnavigation_provider_mobx
@@ -61,7 +61,10 @@ task:
     - cd $template
     - flutter create .
   setup_script:
-    xcrun simctl create Flutter-iPhone com.apple.CoreSimulator.SimDeviceType.iPhone-X com.apple.CoreSimulator.SimRuntime.iOS-12-1 | xargs xcrun simctl boot
+    # create simulator
+    - udid=$(xcrun simctl create "iPhone X" com.apple.CoreSimulator.SimDeviceType.iPhone-X com.apple.CoreSimulator.SimRuntime.iOS-12-0)
+    # boot simulator
+    - xcrun simctl boot $udid
   test_script: 
     - cd $template
     - flutter drive --target=test_driver/app.dart
