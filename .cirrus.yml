@@ -12,7 +12,7 @@ task:
     - flutter test
 
 task:
-  name: Integration tests (Android)
+  name: Integration tests for $template (Android)
   env:
     EMULATOR_API_LEVEL: 22
     ANDROID_ABI: "default;armeabi-v7a"
@@ -42,6 +42,24 @@ task:
   wait_for_emulator_script:
     - adb wait-for-device
     - adb shell input keyevent 82
+  test_script: 
+    - cd $template
+    - flutter drive --target=test_driver/app.dart
+
+task:
+  name: Integration tests for $template (iOS)
+  env:
+    matrix:
+      template: material_bottomnavigation_provider_mobx
+  container:
+    image: cirrusci/flutter:stable
+  pub_cache:
+    folder: ~/.pub-cache
+  create_native_projects_script:
+    - cd $template
+    - flutter create .
+  setup_script:
+    xcrun simctl create Flutter-iPhone com.apple.CoreSimulator.SimDeviceType.iPhone-X com.apple.CoreSimulator.SimRuntime.iOS-12-1 | xargs xcrun simctl boot
   test_script: 
     - cd $template
     - flutter drive --target=test_driver/app.dart
