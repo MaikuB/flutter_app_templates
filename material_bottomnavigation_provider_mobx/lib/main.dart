@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'constants/enums.dart';
-import 'stores/app_store.dart';
+import 'stores/destinations_store.dart';
 import 'stores/home_store.dart';
 import 'stores/dashboard_store.dart';
 import 'stores/notifications_store.dart';
@@ -17,8 +17,8 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        Provider<AppStore>(
-          builder: (_) => AppStore(),
+        Provider<DestinationsStore>(
+          builder: (_) => DestinationsStore(),
         ),
         Provider<HomeStore>(
           builder: (_) => HomeStore(),
@@ -30,7 +30,7 @@ class App extends StatelessWidget {
           builder: (_) => NotificationsStore(),
         ),
       ],
-      child: Consumer<AppStore>(
+      child: Consumer<DestinationsStore>(
         builder: (context, store, _) {
           return MaterialApp(
             title: 'Your app title',
@@ -45,27 +45,27 @@ class App extends StatelessWidget {
                   ),
                   body: SafeArea(
                     child: PageContainer(
-                      store.selectedBottomNavigationDestination,
+                      store.selectedDestination,
                     ),
                   ),
                   bottomNavigationBar: BottomNavigationBar(
                     key: Key('bottomNavigationBar'),
-                    currentIndex:
-                        store.selectedBottomNavigationDestinationIndex,
-                    items: AppStoreBase.bottomNavigationDestinations.map(
+                    currentIndex: store.selectedDestinationIndex,
+                    items:
+                        DestinationsStoreBase.bottomNavigationDestinations.map(
                       (option) {
                         switch (option) {
-                          case BottomNavigationDestination.Home:
+                          case Destination.Home:
                             return BottomNavigationBarItem(
                               icon: Icon(Icons.home),
                               title: Text('Home'),
                             );
-                          case BottomNavigationDestination.Dashboard:
+                          case Destination.Dashboard:
                             return BottomNavigationBarItem(
                               icon: Icon(Icons.dashboard),
                               title: Text('Dashboard'),
                             );
-                          case BottomNavigationDestination.Notifications:
+                          case Destination.Notifications:
                             return BottomNavigationBarItem(
                               icon: Icon(Icons.notifications),
                               title: Text('Notifications'),
@@ -73,20 +73,19 @@ class App extends StatelessWidget {
                         }
                       },
                     ).toList(),
-                    onTap: (index) =>
-                        store.selectBottomNavigationDestination(index),
+                    onTap: (index) => store.selectDestination(index),
                   ),
                   floatingActionButton: FloatingActionButton(
                     key: Key('incrementButton'),
                     onPressed: () {
-                      switch (store.selectedBottomNavigationDestination) {
-                        case BottomNavigationDestination.Home:
+                      switch (store.selectedDestination) {
+                        case Destination.Home:
                           Provider.of<HomeStore>(context).increment();
                           break;
-                        case BottomNavigationDestination.Dashboard:
+                        case Destination.Dashboard:
                           Provider.of<DashboardStore>(context).increment();
                           break;
-                        case BottomNavigationDestination.Notifications:
+                        case Destination.Notifications:
                           Provider.of<NotificationsStore>(context).increment();
                           break;
                       }
@@ -105,7 +104,7 @@ class App extends StatelessWidget {
 }
 
 class PageContainer extends StatelessWidget {
-  final BottomNavigationDestination bottomNavigationMenuOption;
+  final Destination bottomNavigationMenuOption;
 
   const PageContainer(this.bottomNavigationMenuOption, {Key key})
       : super(key: key);
@@ -113,11 +112,11 @@ class PageContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     switch (bottomNavigationMenuOption) {
-      case BottomNavigationDestination.Home:
+      case Destination.Home:
         return HomePage(key: Key('homePage'));
-      case BottomNavigationDestination.Dashboard:
+      case Destination.Dashboard:
         return DashboardPage(key: Key('dashboardPage'));
-      case BottomNavigationDestination.Notifications:
+      case Destination.Notifications:
         return NotificationsPage(key: Key('notificationsPage'));
       default:
         return HomePage(key: Key('homePage'));
