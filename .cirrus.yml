@@ -42,8 +42,7 @@ task:
   start_emulator_background_script:
     $ANDROID_HOME/emulator/emulator -avd test -no-audio -no-window
   wait_for_emulator_script:
-    - adb wait-for-device
-    - adb shell input keyevent 82
+    android-wait-for-emulator
   test_script: 
     - cd $template
     - flutter drive --target=test_driver/app.dart
