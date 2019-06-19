@@ -43,6 +43,7 @@ task:
     $ANDROID_HOME/emulator/emulator -avd test -no-audio -no-window
   wait_for_emulator_script:
     - cd scripts
+    - chmod +x android-wait-for-emulator.sh
     - ./android-wait-for-emulator.sh
   test_script: 
     - cd $template
