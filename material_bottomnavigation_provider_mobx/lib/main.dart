@@ -51,8 +51,7 @@ class App extends StatelessWidget {
                   bottomNavigationBar: BottomNavigationBar(
                     key: Key('bottomNavigationBar'),
                     currentIndex: store.selectedDestinationIndex,
-                    items:
-                        DestinationsStoreBase.bottomNavigationDestinations.map(
+                    items: DestinationsStoreBase.destinations.map(
                       (option) {
                         switch (option) {
                           case Destination.Home:
