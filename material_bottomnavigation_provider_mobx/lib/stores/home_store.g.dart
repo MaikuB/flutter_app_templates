@@ -13,15 +13,17 @@ mixin _$HomeStore on HomeStoreBase, Store {
 
   @override
   int get counter {
+    _$counterAtom.context.enforceReadPolicy(_$counterAtom);
     _$counterAtom.reportObserved();
     return super.counter;
   }
 
   @override
   set counter(int value) {
-    _$counterAtom.context.checkIfStateModificationsAreAllowed(_$counterAtom);
-    super.counter = value;
-    _$counterAtom.reportChanged();
+    _$counterAtom.context.conditionallyRunInAction(() {
+      super.counter = value;
+      _$counterAtom.reportChanged();
+    }, _$counterAtom, name: '${_$counterAtom.name}_set');
   }
 
   final _$HomeStoreBaseActionController =

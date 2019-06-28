@@ -21,16 +21,19 @@ mixin _$DestinationsStore on DestinationsStoreBase, Store {
 
   @override
   int get selectedDestinationIndex {
+    _$selectedDestinationIndexAtom.context
+        .enforceReadPolicy(_$selectedDestinationIndexAtom);
     _$selectedDestinationIndexAtom.reportObserved();
     return super.selectedDestinationIndex;
   }
 
   @override
   set selectedDestinationIndex(int value) {
-    _$selectedDestinationIndexAtom.context
-        .checkIfStateModificationsAreAllowed(_$selectedDestinationIndexAtom);
-    super.selectedDestinationIndex = value;
-    _$selectedDestinationIndexAtom.reportChanged();
+    _$selectedDestinationIndexAtom.context.conditionallyRunInAction(() {
+      super.selectedDestinationIndex = value;
+      _$selectedDestinationIndexAtom.reportChanged();
+    }, _$selectedDestinationIndexAtom,
+        name: '${_$selectedDestinationIndexAtom.name}_set');
   }
 
   final _$DestinationsStoreBaseActionController =
