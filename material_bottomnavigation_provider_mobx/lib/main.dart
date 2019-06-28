@@ -103,16 +103,13 @@ class App extends StatelessWidget {
 }
 
 class PageContainer extends StatelessWidget {
-  final Destination bottomNavigationMenuOption;
+  final Destination destination;
 
-  const PageContainer(this.bottomNavigationMenuOption, {Key key})
-      : super(key: key);
+  const PageContainer(this.destination, {Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    switch (bottomNavigationMenuOption) {
-      case Destination.Home:
-        return HomePage(key: Key('homePage'));
+    switch (destination) {
       case Destination.Dashboard:
         return DashboardPage(key: Key('dashboardPage'));
       case Destination.Notifications:
