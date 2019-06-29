@@ -71,41 +71,33 @@ class AppScaffold extends StatelessWidget {
                         child: Icon(Icons.android),
                       ),
                     ),
-                    ...DestinationsStoreBase.destinations.map(
-                      (d) {
-                        Key key;
-                        Icon icon;
-                        Text title;
-
-                        switch (d) {
-                          case Destination.Home:
-                            key = Keys.homeDrawerItemKey;
-                            icon = Icon(Icons.home);
-                            title = Text('Home');
-                            break;
-                          case Destination.Gallery:
-                            key = Keys.galleryDrawerItemKey;
-                            icon = Icon(Icons.photo_library);
-                            title = Text('Gallery');
-                            break;
-                          case Destination.Slideshow:
-                            key = Keys.slideshowDrawerItemKey;
-                            icon = Icon(Icons.slideshow);
-                            title = Text('Slideshow');
-                            break;
-                        }
-                        return ListTile(
-                          key: key,
-                          leading: icon,
-                          title: title,
-                          selected: store.selectedDestination == d,
-                          onTap: () {
-                            store.selectDestination(d);
-                            Navigator.pop(context);
-                          },
-                        );
+                    ListTile(
+                      key: Keys.homeDrawerItemKey,
+                      leading: Icon(Icons.home),
+                      title: Text('Home'),
+                      onTap: () {
+                        Navigator.pop(context);
+                        store.selectDestination(Destination.Home);
                       },
-                    )
+                    ),
+                    ListTile(
+                      key: Keys.galleryDrawerItemKey,
+                      leading: Icon(Icons.photo_library),
+                      title: Text('Gallery'),
+                      onTap: () async {
+                        Navigator.pop(context);
+                        store.selectDestination(Destination.Gallery);
+                      },
+                    ),
+                    ListTile(
+                      key: Keys.slideshowDrawerItemKey,
+                      leading: Icon(Icons.slideshow),
+                      title: Text('Slideshow'),
+                      onTap: () async {
+                        Navigator.pop(context);
+                        store.selectDestination(Destination.Slideshow);
+                      },
+                    ),
                   ],
                 ),
               ),
@@ -143,11 +135,11 @@ class PageContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     switch (destination) {
       case Destination.Gallery:
-        return GalleryPage(key: Key('galleryPage'));
+        return GalleryPage(key: Keys.galleryPageKey);
       case Destination.Slideshow:
-        return SlideshowPage(key: Key('slideshowPage'));
+        return SlideshowPage(key: Keys.slideshowPageKey);
       default:
-        return HomePage(key: Key('homePage'));
+        return HomePage(key: Keys.homePageKey);
     }
   }
 }

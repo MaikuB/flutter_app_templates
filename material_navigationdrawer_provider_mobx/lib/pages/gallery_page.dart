@@ -9,27 +9,29 @@ class GalleryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<GalleryStore>(builder: (context, store, _) {
-      return Observer(
-        builder: (context) {
-          return Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  'Gallery',
-                  key: Keys.galleryPageTitleKey,
-                  style: Theme.of(context).textTheme.title,
-                ),
-                Text(
-                  'You have pushed the button on this page ${store.counter} time(s)',
-                  key: Keys.galleryPageCounterKey,
-                ),
-              ],
-            ),
-          );
-        },
-      );
-    });
+    return Consumer<GalleryStore>(
+      builder: (context, store, _) {
+        return Observer(
+          builder: (context) {
+            return Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Gallery',
+                    key: Keys.galleryPageTitleKey,
+                    style: Theme.of(context).textTheme.title,
+                  ),
+                  Text(
+                    'You have pushed the button on this page ${store.counter} time(s)',
+                    key: Keys.galleryPageCounterKey,
+                  ),
+                ],
+              ),
+            );
+          },
+        );
+      },
+    );
   }
 }

@@ -8,14 +8,16 @@ The application is similar to the one created when creating an Android applicati
 
 ![Image of home page](https://crossingthestreams.io/content/images/2019/06/home-1.png) ![Image of dashboard page](https://crossingthestreams.io/content/images/2019/06/dashboard-1.png) ![Image of notifications page](https://crossingthestreams.io/content/images/2019/06/notifications-1.png)
 
-Each destination has its own corresponding page and data store. Tapping on the floating action button will increment the counter related to the page that is currently being viewed. The application is structured as follos
+Each destination has its own corresponding page and data store. Tapping on the floating action button will increment the counter related to the page that is currently being viewed.
+
+The application is structured as follows
 
 - `lib`
   - `constants` - this folder is where all application-level constants are kept
-    - `enums.dart` - to maintain all the application-level enums. For this application, a `BottomNavigationDestination` enum is defined that represents all of the bottom navigation destinations: `Home`, `Dashboard` and `Notifications`
+    - `enums.dart` - to maintain all the application-level enums. For this application, a `Destination` enum is defined that represents all of the bottom navigation destinations: `Home`, `Dashboard` and `Notifications`
     - `keys.dart` - to maintain the keys associated with the various widgets in the application
   - `pages` - has the pages associated with the bottom navigation destinations. Each page has a different title will maintain a separate counter to help demonstrate that each page has its own state
-  - `stores - has all of the stores associated with each page/destination. There is a separate `AppStore` defined in the `app_store.dart` file that maintains the selected destination
+  - `stores` - has all of the stores associated with each page/destination. There is a separate `DestinationsStore` defined in the `destinations_store.dart` file that maintains the selected destination
   - `main.dart` - the entry point for the application and contains the top-level widgets for the application itself
 - `test` - 
   - `stores` - this folder has unit tests for all of the stores

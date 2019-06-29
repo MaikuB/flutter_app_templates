@@ -6,7 +6,9 @@ This is a template for creating a Flutter application that uses material design 
 
 The application is similar to the one created when creating an Android application that has a navigation drawer. It has three destinations: Home, Gallery and Slideshow.
 
-Each destination has its own corresponding page and data store. Tapping on the floating action button will increment the counter related to the page that is currently being viewed. Selecting a destination other than the home page will trigger navigating to the selected destination. From there, the user has the option of tapping on the back button to go back to the home page that is configured as the initial route. The application is structured as follows
+Each destination has its own corresponding page and data store. Tapping on the floating action button will increment the counter related to the page that is currently being viewed. Selecting a destination other than the home page will trigger navigating to the selected destination using routes. From there, the user has the option of tapping on the back button to go back to the home page that is configured as the initial route. All navigation is done by updating the selected destination in the `DestinationsStore`. A reaction is configured to trigger the appropriate navigation event when the `selectedDestination` property in that store changes.
+
+The application is structured as follows:
 
 - `lib`
   - `constants` - this folder is where all application-level constants are kept

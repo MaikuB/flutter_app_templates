@@ -82,19 +82,19 @@ Future _switchToSlideshowPage(
     FlutterDriver driver, SerializableFinder drawerIconFinder) async {
   await driver.tap(drawerIconFinder);
   await driver.tap(find.byValueKey('slideshowDrawerItem'));
-  await driver.waitFor(find.byValueKey('slideshowPageTitle'));
+  await driver.waitFor(find.byValueKey('slideshowPage'));
 }
 
 Future _switchToGalleryPage(
     FlutterDriver driver, SerializableFinder drawerIconFinder) async {
   await driver.tap(drawerIconFinder);
   await driver.tap(find.byValueKey('galleryDrawerItem'));
-  await driver.waitFor(find.byValueKey('galleryPageTitle'));
+  await driver.waitFor(find.byValueKey('galleryPage'));
 }
 
 Future _switchToHomePage(
     FlutterDriver driver, SerializableFinder drawerIconFinder) async {
   await driver.tap(drawerIconFinder);
   await driver.tap(find.byValueKey('homeDrawerItem'));
-  await driver.waitFor(find.byValueKey('homePageTitle'));
+  await driver.waitFor(find.byValueKey('homePage'));
 }

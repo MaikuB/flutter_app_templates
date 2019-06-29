@@ -9,27 +9,29 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<HomeStore>(builder: (context, store, _) {
-      return Observer(
-        builder: (context) {
-          return Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  'Home',
-                  key: Keys.homePageTitleKey,
-                  style: Theme.of(context).textTheme.title,
-                ),
-                Text(
-                  'You have pushed the button on this page ${store.counter} time(s)',
-                  key: Keys.homePageCounterKey,
-                ),
-              ],
-            ),
-          );
-        },
-      );
-    });
+    return Consumer<HomeStore>(
+      builder: (context, store, _) {
+        return Observer(
+          builder: (context) {
+            return Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Home',
+                    key: Keys.homePageTitleKey,
+                    style: Theme.of(context).textTheme.title,
+                  ),
+                  Text(
+                    'You have pushed the button on this page ${store.counter} time(s)',
+                    key: Keys.homePageCounterKey,
+                  ),
+                ],
+              ),
+            );
+          },
+        );
+      },
+    );
   }
 }

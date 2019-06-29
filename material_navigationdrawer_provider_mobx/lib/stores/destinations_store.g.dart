@@ -9,13 +9,6 @@ part of 'destinations_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars
 
 mixin _$DestinationsStore on DestinationsStoreBase, Store {
-  Computed<int> _$selectedDestinationIndexComputed;
-
-  @override
-  int get selectedDestinationIndex => (_$selectedDestinationIndexComputed ??=
-          Computed<int>(() => super.selectedDestinationIndex))
-      .value;
-
   final _$selectedDestinationAtom =
       Atom(name: 'DestinationsStoreBase.selectedDestination');
 

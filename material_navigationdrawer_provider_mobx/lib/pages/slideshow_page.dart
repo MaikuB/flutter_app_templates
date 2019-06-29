@@ -9,27 +9,29 @@ class SlideshowPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<SlideshowStore>(builder: (context, store, _) {
-      return Observer(
-        builder: (context) {
-          return Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  'Slideshow',
-                  key: Keys.slideshowPageTitleKey,
-                  style: Theme.of(context).textTheme.title,
-                ),
-                Text(
-                  'You have pushed the button on this page ${store.counter} time(s)',
-                  key: Keys.slideshowPageCounterKey,
-                ),
-              ],
-            ),
-          );
-        },
-      );
-    });
+    return Consumer<SlideshowStore>(
+      builder: (context, store, _) {
+        return Observer(
+          builder: (context) {
+            return Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Slideshow',
+                    key: Keys.slideshowPageTitleKey,
+                    style: Theme.of(context).textTheme.title,
+                  ),
+                  Text(
+                    'You have pushed the button on this page ${store.counter} time(s)',
+                    key: Keys.slideshowPageCounterKey,
+                  ),
+                ],
+              ),
+            );
+          },
+        );
+      },
+    );
   }
 }

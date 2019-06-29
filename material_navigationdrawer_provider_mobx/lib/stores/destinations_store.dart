@@ -11,9 +11,6 @@ abstract class DestinationsStoreBase with Store {
   @observable
   Destination selectedDestination = Destination.Home;
 
-  @computed
-  int get selectedDestinationIndex => destinations.indexOf(selectedDestination);
-
   @action
   void selectDestination(Destination destination) {
     selectedDestination = destination;
