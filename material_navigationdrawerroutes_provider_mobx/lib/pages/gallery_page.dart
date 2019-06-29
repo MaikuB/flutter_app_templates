@@ -11,15 +11,28 @@ class GalleryPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<GalleryStore>(
       builder: (context, store, _) {
-        return Observer(
-          builder: (context) {
-            return Center(
-              child: Text(
-                'You have pushed the button on this page ${store.counter} time(s)',
-                key: Keys.galleryPageCounterKey,
-              ),
-            );
-          },
+        return Scaffold(
+          appBar: AppBar(
+            title: Text('Gallery', key: Keys.galleryPageTitleKey),
+          ),
+          body: Observer(
+            builder: (context) {
+              return Center(
+                child: Text(
+                  'You have pushed the button on this page ${store.counter} time(s)',
+                  key: Keys.galleryPageCounterKey,
+                ),
+              );
+            },
+          ),
+          floatingActionButton: FloatingActionButton(
+            key: Key('incrementButton'),
+            onPressed: () {
+              store.increment();
+            },
+            tooltip: 'Increment',
+            child: Icon(Icons.add),
+          ),
         );
       },
     );

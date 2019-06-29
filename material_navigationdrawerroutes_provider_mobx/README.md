@@ -6,7 +6,7 @@ This is a template for creating a Flutter application that uses material design 
 
 The application is similar to the one created when creating an Android application that has a navigation drawer. It has three destinations: Home, Gallery and Slideshow.
 
-Each destination has its own corresponding page and data store. Tapping on the floating action button will increment the counter related to the page that is currently being viewed. Selecting a destination other than the home page will trigger navigating to the selected destination using routes. From there, the user has the option of tapping on the back button to go back to the home page that is configured as the initial route. All navigation is done by updating the selected destination in the `DestinationsStore`. A reaction is configured to trigger the appropriate navigation event when the `selectedDestination` property in that store changes.
+Each destination has its own corresponding page and data store. Tapping on the floating action button will increment the counter related to the page that is currently being viewed. Selecting a destination other than the home page will trigger navigating to the selected destination using routes. From there, the user has the option of tapping on the back button to go back to the home page that is configured as the initial route.
 
 The application is structured as follows:
 
@@ -15,7 +15,7 @@ The application is structured as follows:
     - `routes.dart` - to maintain all of the routes that represent the destinations
     - `keys.dart` - to maintain the keys associated with the various widgets in the application
   - `pages` - has the pages associated with the destinations. Each page has a different title will maintain a separate counter to help demonstrate that each page has its own state
-  - `stores` - has all of the stores associated with each page/destination. There is a separate `DestinationsStore` defined in the `destinations_store.dart` file that maintains the selected destination
+  - `stores` - has all of the stores associated with each page/destination
   - `main.dart` - the entry point for the application and contains the top-level widgets for the application itself
 - `test` - 
   - `stores` - this folder has unit tests for all of the stores
