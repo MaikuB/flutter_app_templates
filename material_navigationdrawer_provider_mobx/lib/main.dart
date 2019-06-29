@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';
 import 'constants/enums.dart';
+import 'constants/keys.dart';
 import 'stores/destinations_store.dart';
 import 'stores/home_store.dart';
 import 'stores/gallery_store.dart';
@@ -77,17 +78,17 @@ class AppScaffold extends StatelessWidget {
 
                       switch (d) {
                         case Destination.Home:
-                          key = Key('homeMenuItem');
+                          key = Keys.homeDrawerItemKey;
                           icon = Icon(Icons.home);
                           title = Text('Home');
                           break;
                         case Destination.Gallery:
-                          key = Key('galleryMenuItem');
+                          key = Keys.galleryDrawerItemKey;
                           icon = Icon(Icons.photo_library);
                           title = Text('Gallery');
                           break;
                         case Destination.Slideshow:
-                          key = Key('slideshowMenuItem');
+                          key = Keys.slideshowDrawerItemKey;
                           icon = Icon(Icons.slideshow);
                           title = Text('Slideshow');
                           break;

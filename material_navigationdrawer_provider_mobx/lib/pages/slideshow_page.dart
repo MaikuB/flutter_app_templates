@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';
+import '../constants/keys.dart';
 import '../stores/slideshow_store.dart';
 
 class SlideshowPage extends StatelessWidget {
@@ -17,12 +18,12 @@ class SlideshowPage extends StatelessWidget {
               children: [
                 Text(
                   'Slideshow',
-                  key: Key('slideshowPageTitle'),
+                  key: Keys.slideshowPageTitleKey,
                   style: Theme.of(context).textTheme.title,
                 ),
                 Text(
                   'You have pushed the button on this page ${store.counter} time(s)',
-                  key: Key('slideshowPageCounter'),
+                  key: Keys.slideshowPageCounterKey,
                 ),
               ],
             ),

@@ -1,30 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:material_navigationdrawer_provider_mobx/main.dart';
+import 'package:material_navigationdrawer_provider_mobx/pages/home_page.dart';
+import 'package:material_navigationdrawer_provider_mobx/stores/home_store.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  final drawerIconFinder = find.byIcon(Icons.menu);
-  final drawerFinder = find.byType(Drawer);
-  final homePageFinder = find.byKey(Key('homePage'));
-  final galleryPageFinder = find.byKey(Key('galleryPage'));
-  final slideshowPageFinder = find.byKey(Key('slideshowPage'));
-  final incrementButtonFinder = find.byKey(Key('incrementButton'));
-  testWidgets('Increment on home page', (WidgetTester tester) async {
-    // pump app in
-    await tester.pumpWidget(App());
-    expect(drawerIconFinder, findsOneWidget);
-    expect(drawerFinder, findsNothing);
-    expect(homePageFinder, findsOneWidget);
-    expect(galleryPageFinder, findsNothing);
-    expect(slideshowPageFinder, findsNothing);
-    expect(find.byKey(Key('homePageTitle')), findsOneWidget);
-    expect(find.text('You have pushed the button on this page 0 time(s)'),
-        findsOneWidget);
+  final homePageFinder = find.byType(HomePage);
+  group('HomePage', () {
+    testWidgets('Counter updates', (WidgetTester tester) async {
+      var store = HomeStore();
 
-    // increment
-    await tester.tap(incrementButtonFinder);
-    await tester.pump();
-    expect(find.text('You have pushed the button on this page 1 time(s)'),
-        findsOneWidget);
+      await tester.pumpWidget(
+        Provider<HomeStore>(
+          builder: (_) => store,
+          child: MaterialApp(
+            home: HomePage(),
+          ),
+        ),
+      );
+
+      expect(homePageFinder, findsOneWidget);
+      expect(find.byKey(Key('homePageTitle')), findsOneWidget);
+      expect(find.text('You have pushed the button on this page 0 time(s)'),
+          findsOneWidget);
+
+      store.increment();
+      await tester.pump();
+      expect(find.text('You have pushed the button on this page 1 time(s)'),
+          findsOneWidget);
+    });
   });
 }

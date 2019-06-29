@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';
+import '../constants/keys.dart';
 import '../stores/gallery_store.dart';
 
 class GalleryPage extends StatelessWidget {
@@ -17,12 +18,12 @@ class GalleryPage extends StatelessWidget {
               children: [
                 Text(
                   'Gallery',
-                  key: Key('galleryPageTitle'),
+                  key: Keys.galleryPageTitleKey,
                   style: Theme.of(context).textTheme.title,
                 ),
                 Text(
                   'You have pushed the button on this page ${store.counter} time(s)',
-                  key: Key('galleryPageCounter'),
+                  key: Keys.galleryPageCounterKey,
                 ),
               ],
             ),
