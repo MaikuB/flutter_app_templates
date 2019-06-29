@@ -34,7 +34,7 @@ class App extends StatelessWidget {
       child: Consumer<DestinationsStore>(
         builder: (context, store, _) {
           return MaterialApp(
-            title: 'Your app title',
+            title: 'App title',
             theme: ThemeData(
               primarySwatch: Colors.blue,
             ),

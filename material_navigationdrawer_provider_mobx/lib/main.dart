@@ -32,11 +32,11 @@ class App extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
-        title: 'Flutter Demo',
+        title: 'App title',
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: new AppScaffold(),
+        home: AppScaffold(),
       ),
     );
   }
@@ -71,39 +71,41 @@ class AppScaffold extends StatelessWidget {
                         child: Icon(Icons.android),
                       ),
                     ),
-                    ...DestinationsStoreBase.destinations.map((d) {
-                      Key key;
-                      Icon icon;
-                      Text title;
+                    ...DestinationsStoreBase.destinations.map(
+                      (d) {
+                        Key key;
+                        Icon icon;
+                        Text title;
 
-                      switch (d) {
-                        case Destination.Home:
-                          key = Keys.homeDrawerItemKey;
-                          icon = Icon(Icons.home);
-                          title = Text('Home');
-                          break;
-                        case Destination.Gallery:
-                          key = Keys.galleryDrawerItemKey;
-                          icon = Icon(Icons.photo_library);
-                          title = Text('Gallery');
-                          break;
-                        case Destination.Slideshow:
-                          key = Keys.slideshowDrawerItemKey;
-                          icon = Icon(Icons.slideshow);
-                          title = Text('Slideshow');
-                          break;
-                      }
-                      return ListTile(
-                        key: key,
-                        leading: icon,
-                        title: title,
-                        selected: store.selectedDestination == d,
-                        onTap: () {
-                          store.selectDestination(d);
-                          Navigator.pop(context);
-                        },
-                      );
-                    })
+                        switch (d) {
+                          case Destination.Home:
+                            key = Keys.homeDrawerItemKey;
+                            icon = Icon(Icons.home);
+                            title = Text('Home');
+                            break;
+                          case Destination.Gallery:
+                            key = Keys.galleryDrawerItemKey;
+                            icon = Icon(Icons.photo_library);
+                            title = Text('Gallery');
+                            break;
+                          case Destination.Slideshow:
+                            key = Keys.slideshowDrawerItemKey;
+                            icon = Icon(Icons.slideshow);
+                            title = Text('Slideshow');
+                            break;
+                        }
+                        return ListTile(
+                          key: key,
+                          leading: icon,
+                          title: title,
+                          selected: store.selectedDestination == d,
+                          onTap: () {
+                            store.selectDestination(d);
+                            Navigator.pop(context);
+                          },
+                        );
+                      },
+                    )
                   ],
                 ),
               ),

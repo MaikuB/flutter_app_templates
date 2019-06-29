@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:material_navigationdrawer_provider_mobx/constants/keys.dart';
-import 'package:material_navigationdrawer_provider_mobx/main.dart';
-import 'package:material_navigationdrawer_provider_mobx/pages/gallery_page.dart';
-import 'package:material_navigationdrawer_provider_mobx/pages/home_page.dart';
-import 'package:material_navigationdrawer_provider_mobx/pages/slideshow_page.dart';
+import 'package:material_navigationdrawerroutes_provider_mobx/constants/keys.dart';
+import 'package:material_navigationdrawerroutes_provider_mobx/main.dart';
+import 'package:material_navigationdrawerroutes_provider_mobx/pages/gallery_page.dart';
+import 'package:material_navigationdrawerroutes_provider_mobx/pages/home_page.dart';
+import 'package:material_navigationdrawerroutes_provider_mobx/pages/slideshow_page.dart';
 
 void main() {
   group('App', () {
     final drawerMenuButtonFinder = find.byIcon(Icons.menu);
+    final backButtonFinder = find.byIcon(Icons.arrow_back);
     final drawerFinder = find.byType(Drawer);
     final homePageFinder = find.byType(HomePage);
     final galleryPageFinder = find.byType(GalleryPage);
@@ -48,8 +49,9 @@ void main() {
       await tester.tap(homeIconFinder);
       await tester.pumpAndSettle();
 
-      // drawer should now be closed
+      expect(drawerMenuButtonFinder, findsOneWidget);
       expect(drawerFinder, findsNothing);
+      expect(backButtonFinder, findsNothing);
 
       // should now be on home page
       expect(homePageFinder, findsOneWidget);
@@ -72,6 +74,7 @@ void main() {
 
       // drawer should now be closed
       expect(drawerFinder, findsNothing);
+      expect(backButtonFinder, findsOneWidget);
 
       // should now be on gallery page
       expect(homePageFinder, findsNothing);
@@ -94,6 +97,7 @@ void main() {
 
       // drawer should now be closed
       expect(drawerFinder, findsNothing);
+      expect(backButtonFinder, findsOneWidget);
 
       // should now be on slideshow page
       expect(homePageFinder, findsNothing);

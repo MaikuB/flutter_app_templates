@@ -2,7 +2,10 @@ task:
   name: Unit tests and widget tests
   env:
     matrix:
-      template: material_bottomnavigation_provider_mobx
+      template:
+        - material_bottomnavigation_provider_mobx
+        - material_navigationdrawer_provider_mobx
+        - material_navigationdrawerroutes_provider_mobx
   container:
     image: cirrusci/flutter:stable
   pub_cache:
@@ -19,7 +22,10 @@ task:
     EMULATOR_API_LEVEL: 22
     ANDROID_ABI: "default;armeabi-v7a"
     matrix:
-      template: material_bottomnavigation_provider_mobx
+      template:
+        - material_bottomnavigation_provider_mobx
+        - material_navigationdrawer_provider_mobx
+        - material_navigationdrawerroutes_provider_mobx
   container:
     image: cirrusci/flutter:stable
   pub_cache:
@@ -57,7 +63,10 @@ task:
     image: mojave-xcode-10.2-flutter
   env:
     matrix:
-      template: material_bottomnavigation_provider_mobx
+      template:
+        - material_bottomnavigation_provider_mobx
+        - material_navigationdrawer_provider_mobx
+        - material_navigationdrawerroutes_provider_mobx
   container:
     image: cirrusci/flutter:stable
   pub_cache:
