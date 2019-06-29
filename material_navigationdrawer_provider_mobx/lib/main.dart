@@ -53,7 +53,6 @@ class AppScaffold extends StatelessWidget {
         return Observer(
           builder: (context) {
             return Scaffold(
-              key: GlobalKey<ScaffoldState>(),
               appBar: AppBar(
                 title: Text('App title'),
               ),
@@ -61,7 +60,6 @@ class AppScaffold extends StatelessWidget {
                 child: PageContainer(store.selectedDestination),
               ),
               drawer: Drawer(
-                key: Key('drawer'),
                 child: ListView(
                   padding: EdgeInsets.zero,
                   children: [
