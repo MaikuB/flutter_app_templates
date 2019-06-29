@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'constants/enums.dart';
+import 'constants/keys.dart';
 import 'stores/destinations_store.dart';
 import 'stores/home_store.dart';
 import 'stores/dashboard_store.dart';
@@ -75,7 +76,7 @@ class App extends StatelessWidget {
                     onTap: (index) => store.selectDestination(index),
                   ),
                   floatingActionButton: FloatingActionButton(
-                    key: Key('incrementButton'),
+                    key: Keys.incrementButtonKey,
                     onPressed: () {
                       switch (store.selectedDestination) {
                         case Destination.Home:
@@ -111,11 +112,11 @@ class PageContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     switch (destination) {
       case Destination.Dashboard:
-        return DashboardPage(key: Key('dashboardPage'));
+        return DashboardPage(key: Keys.dashboardPageKey);
       case Destination.Notifications:
-        return NotificationsPage(key: Key('notificationsPage'));
+        return NotificationsPage(key: Keys.notificationsPageKey);
       default:
-        return HomePage(key: Key('homePage'));
+        return HomePage(key: Keys.homePageKey);
     }
   }
 }

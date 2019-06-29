@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';
+import '../constants/keys.dart';
 import '../stores/dashboard_store.dart';
 
 class DashboardPage extends StatelessWidget {
@@ -18,12 +19,12 @@ class DashboardPage extends StatelessWidget {
                 children: [
                   Text(
                     'Dashboard',
-                    key: Key('dashboardPageTitle'),
+                    key: Keys.dashboardPageTitleKey,
                     style: Theme.of(context).textTheme.title,
                   ),
                   Text(
                     'You have pushed the button on this page ${store.counter} time(s)',
-                    key: Key('dashboardPageCounter'),
+                    key: Keys.dashboardPageCounterKey,
                   )
                 ],
               ),
