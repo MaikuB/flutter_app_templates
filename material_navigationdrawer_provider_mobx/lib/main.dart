@@ -53,6 +53,7 @@ class AppScaffold extends StatelessWidget {
         return Observer(
           builder: (context) {
             return Scaffold(
+              key: GlobalKey<ScaffoldState>(),
               appBar: AppBar(
                 title: Text('App title'),
               ),
@@ -60,6 +61,7 @@ class AppScaffold extends StatelessWidget {
                 child: PageContainer(store.selectedDestination),
               ),
               drawer: Drawer(
+                key: Key('drawer'),
                 child: ListView(
                   padding: EdgeInsets.zero,
                   children: [
@@ -70,38 +72,39 @@ class AppScaffold extends StatelessWidget {
                         child: Icon(Icons.android),
                       ),
                     ),
-                    ListTile(
-                      key: Key('homeMenuItem'),
-                      leading: Icon(Icons.home),
-                      title: Text('Home'),
-                      selected: store.selectedDestination == Destination.Home,
-                      onTap: () {
-                        store.selectDestination(Destination.Home);
-                        Navigator.pop(context);
-                      },
-                    ),
-                    ListTile(
-                      key: Key('galleryMenuItem'),
-                      leading: Icon(Icons.photo_album),
-                      selected:
-                          store.selectedDestination == Destination.Gallery,
-                      title: Text('Gallery'),
-                      onTap: () {
-                        store.selectDestination(Destination.Gallery);
-                        Navigator.pop(context);
-                      },
-                    ),
-                    ListTile(
-                      key: Key('slideshowMenuItem'),
-                      leading: Icon(Icons.slideshow),
-                      title: Text('Slideshow'),
-                      selected:
-                          store.selectedDestination == Destination.Slideshow,
-                      onTap: () {
-                        store.selectDestination(Destination.Slideshow);
-                        Navigator.pop(context);
-                      },
-                    ),
+                    ...DestinationsStoreBase.destinations.map((d) {
+                      Key key;
+                      Icon icon;
+                      Text title;
+
+                      switch (d) {
+                        case Destination.Home:
+                          key = Key('homeMenuItem');
+                          icon = Icon(Icons.home);
+                          title = Text('Home');
+                          break;
+                        case Destination.Gallery:
+                          key = Key('galleryMenuItem');
+                          icon = Icon(Icons.photo_library);
+                          title = Text('Gallery');
+                          break;
+                        case Destination.Slideshow:
+                          key = Key('slideshowMenuItem');
+                          icon = Icon(Icons.slideshow);
+                          title = Text('Slideshow');
+                          break;
+                      }
+                      return ListTile(
+                        key: key,
+                        leading: icon,
+                        title: title,
+                        selected: store.selectedDestination == d,
+                        onTap: () {
+                          store.selectDestination(d);
+                          Navigator.pop(context);
+                        },
+                      );
+                    })
                   ],
                 ),
               ),
