@@ -20,7 +20,6 @@ void main() {
       );
 
       expect(galleryPageFinder, findsOneWidget);
-      expect(find.byKey(Key('galleryPageTitle')), findsOneWidget);
       expect(find.text('You have pushed the button on this page 0 time(s)'),
           findsOneWidget);
 

@@ -11,32 +11,15 @@ class SlideshowPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<SlideshowStore>(
       builder: (context, store, _) {
-        return Scaffold(
-          appBar: AppBar(
-            title: Text(
-              'Slideshow',
-              key: Keys.slideshowPageTitleKey,
-            ),
-          ),
-          body: SafeArea(
-            child: Observer(
-              builder: (context) {
-                return Center(
-                  child: Text(
-                    'You have pushed the button on this page ${store.counter} time(s)',
-                    key: Keys.slideshowPageCounterKey,
-                  ),
-                );
-              },
-            ),
-          ),
-          floatingActionButton: FloatingActionButton(
-            key: Keys.incrementButtonKey,
-            child: Icon(Icons.add),
-            onPressed: () {
-              store.increment();
-            },
-          ),
+        return Observer(
+          builder: (context) {
+            return Center(
+              child: Text(
+                'You have pushed the button on this page ${store.counter} time(s)',
+                key: Keys.slideshowPageCounterKey,
+              ),
+            );
+          },
         );
       },
     );

@@ -20,7 +20,6 @@ void main() {
       );
 
       expect(slideshowPageFinder, findsOneWidget);
-      expect(find.byKey(Key('slideshowPageTitle')), findsOneWidget);
       expect(find.text('You have pushed the button on this page 0 time(s)'),
           findsOneWidget);
 

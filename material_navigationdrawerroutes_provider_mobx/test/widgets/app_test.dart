@@ -8,8 +8,8 @@ import 'package:material_navigationdrawerroutes_provider_mobx/pages/slideshow_pa
 
 void main() {
   group('App', () {
-    final drawerMenuButtonFinder = find.byIcon(Icons.menu);
-    final backButtonFinder = find.byIcon(Icons.arrow_back);
+    final drawerMenuButtonFinder = find.byTooltip('Open navigation menu');
+    final backButtonFinder = find.byTooltip('Back');
     final drawerFinder = find.byType(Drawer);
     final homePageFinder = find.byType(HomePage);
     final galleryPageFinder = find.byType(GalleryPage);
