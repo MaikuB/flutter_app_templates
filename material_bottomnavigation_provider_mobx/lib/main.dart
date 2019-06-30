@@ -118,7 +118,7 @@ class AppBarTitle extends StatelessWidget {
       case Destination.Dashboard:
         return Text('Dashboard', key: Keys.dashboardPageTitleKey);
       case Destination.Notifications:
-        return Text('Slideshow', key: Keys.notificationsPageTitleKey);
+        return Text('Notifications', key: Keys.notificationsPageTitleKey);
       case Destination.Settings:
         return Text('Settings', key: Keys.settingsPageTitleKey);
       default:
