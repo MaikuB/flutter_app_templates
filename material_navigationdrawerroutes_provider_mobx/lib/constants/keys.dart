@@ -14,4 +14,8 @@ class Keys {
   static const slideshowDrawerItemKey = Key('slideshowDrawerItem');
   static const slideshowPageTitleKey = Key('slideshowPageTitle');
   static const slideshowPageCounterKey = Key('slideshowPageCounter');
+  static const settingsDrawerItemKey = Key('settingsDrawerItem');
+  static const settingsPageKey = Key('settingsPage');
+  static const settingsPageTitleKey = Key('settingsPageTitle');
+  static const useDarkModeSettingKey = Key('useDarkModeSetting');
 }

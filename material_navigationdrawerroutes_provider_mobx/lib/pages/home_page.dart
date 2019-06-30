@@ -63,6 +63,16 @@ class HomePage extends StatelessWidget {
                     Navigator.pushNamed(context, Routes.slideshow);
                   },
                 ),
+                Divider(),
+                ListTile(
+                  key: Keys.settingsDrawerItemKey,
+                  leading: Icon(Icons.settings),
+                  title: Text('Settings'),
+                  onTap: () async {
+                    Navigator.pop(context);
+                    Navigator.pushNamed(context, Routes.settings);
+                  },
+                ),
               ],
             ),
           ),

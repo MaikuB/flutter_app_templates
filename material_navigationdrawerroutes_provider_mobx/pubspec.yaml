@@ -27,6 +27,7 @@ dependencies:
   provider:
   mobx:
   flutter_mobx:
+  shared_preferences:
 
 dev_dependencies:
   flutter_driver:
@@ -36,6 +37,7 @@ dev_dependencies:
   test:
   build_runner:
   mobx_codegen:
+  mockito:
 
 
 # For information on the generic Dart part of this file, see the
