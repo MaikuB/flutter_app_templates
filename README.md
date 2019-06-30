@@ -4,10 +4,14 @@
 
 This repository is to used to maintain some templates that can form the basis of a Flutter application. These templates may be opinionated in how to structure applications. The intent is that these templates could help other developers get started sooner in the absence of being able specify templates to use to the `flutter create` command.
 
+**NOTE**: updates may be done to existing templates. As this isn't a published package, if you want to stay notified of updates then it's suggested that you watch the GitHub repository. 
+
 ## Templates 
 Templates can be found in the following folders
 
-- `material_bottomnavigation_provider_mobx` - a template for a material design application with bottom navigation, provider and MobX
+- `material_bottomnavigation_provider_mobx` - a template for a material design application with bottom navigation. Uses provider and MobX for state management
+- `material_navigationdrawer_provider_mobx` - a template for a material design application with a navigation drawer. Selecting a destination updates the content displayed without triggering navigation. Uses provider and MobX for state management
+- `material_navigationdrawerroutes_provider_mobx` - a template for a material design application with a navigation drawer. Selecting a destination will trigger navigating to the destination with a back button so that the user can go back to the home page. Uses provider and MobX for state management
 
 ## Getting started with a template
 
@@ -18,17 +22,26 @@ When creating a brand new Flutter application, there are few steps that develope
 - specify the languages used for the Android and iOS projects
 
 Note that out of the box, Flutter will combine the organisation and name of the app to set that as the bundle identifier of your Android and iOS application. It is still possible to do all of the above with a template. The following steps are required
-1. Clone this repository
-2. Pick the folder/template you'd like to use and copy it to the location of your choice. Let's assume for this example that you have picked the `material_bottomnavigation_provider_mobx` folder and copied it to sit within `projects` folder
-3. Go to the `projects` folder (i.e. where you've copied the template to). Rename the folder to match the name of your application e.g. `counter`. This is crucial as Flutter's tooling actually uses this as portion of the bundle identifier that represents your application's name
-4. Open the `counter` application in your IDE of choice, search for all instances of `material_bottomnavigation_provider_mobx` and replace it with `counter` (the name of your application)
-5. From the root folder of your `counter` application. Run the following command
+
+- Clone this repository
+- Pick the folder/template you'd like to use and copy it to the location of your choice. Let's assume for this example that you have picked the `material_bottomnavigation_provider_mobx` folder and copied it to sit within `projects` folder
+- Go to the `projects` folder (i.e. where you've copied the template to). Rename the folder to match the name of your application e.g. `counter`. This is crucial as Flutter's tooling actually uses this as portion of the bundle identifier that represents your application's name
+- Open the `counter` application in your IDE of choice, search for all instances of `material_bottomnavigation_provider_mobx` and replace it with `counter` (the name of your application)
+- From the root folder of your `counter` application. Run the following command
 
 ```
 flutter create --org <organisation> -a <android_language> -i <ios_language> .
 ```
 
-where `organisation>` is your organisation in reverse domain name notation. For example, given the `crossingthestreams.io` domain, the organisation would be specified as `io.crossingthestreams`. <android_language> is either `java` or `kotlin` and <ios_language> is either `objc` or `swift`. The tooling will generate a `widget_test.dart` file within the `test` folder that can be deleted. Successfully executing all of the steps would create an application with the desired application name, bundle identifier and create the appropriate Android and iOS project files. From there you should be able to run the application. You can then the `pubspec.yaml` to your liking (e.g. to update the dependencies). Note that the templates have unit tests, widget tests and integration tests included. Therefore, if you make changes then these tests may need to be updated to stop them from failing.
+where `organisation>` is your organisation in reverse domain name notation. For example, given the `crossingthestreams.io` domain, the organisation would be specified as `io.crossingthestreams`. `<android_language>` is either `java` or `kotlin` and `<ios_language>` is either `objc` or `swift`. The tooling will generate a `widget_test.dart` file within the `test` folder that can be deleted. Successfully executing all of the steps would create an application with the desired application name, bundle identifier and create the appropriate Android and iOS project files. From there you should be able to run the application. You can then the `pubspec.yaml` to your liking (e.g. to update the dependencies). Note that the templates have unit tests, widget tests and integration tests included. Therefore, if you make changes then these tests may need to be updated to stop them from failing.
+
+As the templates do not specify the version of the dependencies to pull in, developers may want to explicitly do so, or run the following command to upgrade them to the latest versions whilst avoiding conflicts
+
+`flutter pub upgrade`
+
+It's suggested that developers also run the following command once the dependencies have been updated to ensure that generated code (e.g. by MobX's code generator) is also updated
+
+`flutter pub run build_runner build --delete-conflicting-outputs`
 
 ## Contributions
 

@@ -7,10 +7,16 @@ void main() {
     FlutterDriver driver;
     final bottomNavigationBarFinder = find.byValueKey('bottomNavigationBar');
     final incrementButtonFinder = find.byValueKey('incrementButton');
+    final homePageFinder = find.byValueKey('homePage');
+    final dashboardPageFinder = find.byValueKey('dashboardPage');
+    final notificationsPageFinder = find.byValueKey('notificationsPage');
+    final settingsPageFinder = find.byValueKey('settingsPage');
     final homePageCounterFinder = find.byValueKey('homePageCounter');
     final dashboardPageCounterFinder = find.byValueKey('dashboardPageCounter');
     final notificationsPageCounterFinder =
         find.byValueKey('notificationsPageCounter');
+    final useDarkModeSettingFinder = find.byValueKey('useDarkModeSetting');
+
     setUpAll(() async {
       driver = await FlutterDriver.connect();
     });
@@ -28,10 +34,15 @@ void main() {
       await driver.waitFor(find.byValueKey('homePage'));
     });
 
-    test('switching pages works', () async {
-      await _switchToDashboardPage(driver, bottomNavigationBarFinder);
-      await _switchToNotificationsPage(driver, bottomNavigationBarFinder);
-      await _switchToHomePage(driver, bottomNavigationBarFinder);
+    test('selecting pages works', () async {
+      await _selectPage(
+          driver, bottomNavigationBarFinder, 'Dashboard', dashboardPageFinder);
+      await _selectPage(driver, bottomNavigationBarFinder, 'Notifications',
+          notificationsPageFinder);
+      await _selectPage(
+          driver, bottomNavigationBarFinder, 'Settings', settingsPageFinder);
+      await _selectPage(
+          driver, bottomNavigationBarFinder, 'Home', homePageFinder);
     });
 
     test('increment counter on home page', () async {
@@ -43,7 +54,8 @@ void main() {
     });
 
     test('increment counter on dashboard page', () async {
-      await _switchToDashboardPage(driver, bottomNavigationBarFinder);
+      await _selectPage(
+          driver, bottomNavigationBarFinder, 'Dashboard', dashboardPageFinder);
       expect(await driver.getText(dashboardPageCounterFinder),
           'You have pushed the button on this page 0 time(s)');
       await driver.tap(incrementButtonFinder);
@@ -53,7 +65,8 @@ void main() {
     });
 
     test('increment counter on notifications page', () async {
-      await _switchToNotificationsPage(driver, bottomNavigationBarFinder);
+      await _selectPage(driver, bottomNavigationBarFinder, 'Notifications',
+          notificationsPageFinder);
       expect(await driver.getText(notificationsPageCounterFinder),
           'You have pushed the button on this page 0 time(s)');
       await driver.tap(incrementButtonFinder);
@@ -61,40 +74,38 @@ void main() {
       await driver.tap(incrementButtonFinder);
       expect(await driver.getText(notificationsPageCounterFinder),
           'You have pushed the button on this page 3 time(s)');
-      await _switchToHomePage(driver, bottomNavigationBarFinder);
+    });
+
+    test('toggle dark mode', () async {
+      await _selectPage(
+          driver, bottomNavigationBarFinder, 'Settings', settingsPageFinder);
+      await driver.tap(useDarkModeSettingFinder);
     });
 
     test('the last value of the counters on each page are as expected',
         () async {
+      await _selectPage(
+          driver, bottomNavigationBarFinder, 'Home', homePageFinder);
       expect(await driver.getText(homePageCounterFinder),
           'You have pushed the button on this page 1 time(s)');
-      await _switchToDashboardPage(driver, bottomNavigationBarFinder);
+      await _selectPage(
+          driver, bottomNavigationBarFinder, 'Dashboard', dashboardPageFinder);
       expect(await driver.getText(dashboardPageCounterFinder),
           'You have pushed the button on this page 2 time(s)');
-      await _switchToNotificationsPage(driver, bottomNavigationBarFinder);
+      await _selectPage(driver, bottomNavigationBarFinder, 'Notifications',
+          notificationsPageFinder);
       expect(await driver.getText(notificationsPageCounterFinder),
           'You have pushed the button on this page 3 time(s)');
     });
   });
 }
 
-Future _switchToNotificationsPage(
-    FlutterDriver driver, SerializableFinder bottomNavigationBarFinder) async {
+Future _selectPage(
+    FlutterDriver driver,
+    SerializableFinder bottomNavigationBarFinder,
+    String bottomNavigationBarItemText,
+    SerializableFinder pageFinder) async {
   await driver.waitFor(bottomNavigationBarFinder);
-  await driver.tap(find.text('Notifications'));
-  await driver.waitFor(find.byValueKey('notificationsPageTitle'));
-}
-
-Future _switchToDashboardPage(
-    FlutterDriver driver, SerializableFinder bottomNavigationBarFinder) async {
-  await driver.waitFor(bottomNavigationBarFinder);
-  await driver.tap(find.text('Dashboard'));
-  await driver.waitFor(find.byValueKey('dashboardPageTitle'));
-}
-
-Future _switchToHomePage(
-    FlutterDriver driver, SerializableFinder bottomNavigationBarFinder) async {
-  await driver.waitFor(bottomNavigationBarFinder);
-  await driver.tap(find.text('Home'));
-  await driver.waitFor(find.byValueKey('homePageTitle'));
+  await driver.tap(find.text(bottomNavigationBarItemText));
+  await driver.waitFor(pageFinder);
 }

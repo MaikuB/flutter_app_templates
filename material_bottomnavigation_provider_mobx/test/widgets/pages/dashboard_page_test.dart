@@ -1,32 +1,40 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:material_bottomnavigation_provider_mobx/main.dart';
+import 'package:material_bottomnavigation_provider_mobx/constants/keys.dart';
+import 'package:material_bottomnavigation_provider_mobx/pages/dashboard_page.dart';
+import 'package:material_bottomnavigation_provider_mobx/stores/dashboard_store.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  final homePageFinder = find.byKey(Key('homePage'));
-  final dashboardPageFinder = find.byKey(Key('dashboardPage'));
-  final notificationsPageFinder = find.byKey(Key('notificationsPage'));
-  final dashboardIconFinder = find.byIcon(Icons.dashboard);
-  final incrementButtonFinder = find.byKey(Key('incrementButton'));
-  testWidgets('Increment on dashboard page', (WidgetTester tester) async {
-    // pump app in
-    await tester.pumpWidget(App());
-    // check that home page is the one that's visible
-    expect(homePageFinder, findsOneWidget);
-    expect(dashboardPageFinder, findsNothing);
-    expect(notificationsPageFinder, findsNothing);
+  group('DashboardPage', () {
+    final pageFinder = find.byType(DashboardPage);
+    var store = DashboardStore();
+    testWidgets('Counter starts at zero', (WidgetTester tester) async {
+      await _pumpWidget(tester, store);
 
-    // switch to dashboard page
-    await tester.tap(dashboardIconFinder);
+      expect(pageFinder, findsOneWidget);
+      expect(find.text('You have pushed the button on this page 0 time(s)'),
+          findsOneWidget);
+    });
 
-    // now on the dashboard page
-    await tester.pump();
-    expect(find.byKey(Key('dashboardPageTitle')), findsOneWidget);
-    expect(find.text('You have pushed the button on this page 0 time(s)'),
-        findsOneWidget);
-    await tester.tap(incrementButtonFinder);
-    await tester.pump();
-    expect(find.text('You have pushed the button on this page 1 time(s)'),
-        findsOneWidget);
+    testWidgets('Counter updates', (WidgetTester tester) async {
+      await _pumpWidget(tester, store);
+
+      store.increment();
+      await tester.pump();
+      expect(find.text('You have pushed the button on this page 1 time(s)'),
+          findsOneWidget);
+    });
   });
+}
+
+Future _pumpWidget(WidgetTester tester, DashboardStore store) async {
+  await tester.pumpWidget(
+    Provider<DashboardStore>(
+      builder: (_) => store,
+      child: MaterialApp(
+        home: DashboardPage(),
+      ),
+    ),
+  );
 }

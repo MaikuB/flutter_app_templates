@@ -1,1 +1,1 @@
-enum Destination { Home, Dashboard, Notifications }
+enum Destination { Home, Dashboard, Notifications, Settings }

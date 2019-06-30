@@ -1,24 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:material_bottomnavigation_provider_mobx/main.dart';
+import 'package:material_bottomnavigation_provider_mobx/constants/keys.dart';
+import 'package:material_bottomnavigation_provider_mobx/pages/home_page.dart';
+import 'package:material_bottomnavigation_provider_mobx/stores/home_store.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  final homePageFinder = find.byKey(Key('homePage'));
-  final dashboardPageFinder = find.byKey(Key('dashboardPage'));
-  final notificationsPageFinder = find.byKey(Key('notificationsPage'));
-  final incrementButtonFinder = find.byKey(Key('incrementButton'));
-  testWidgets('Increment on home page', (WidgetTester tester) async {
-    // check that home page is the one that's visible
-    await tester.pumpWidget(App());
-    expect(homePageFinder, findsOneWidget);
-    expect(dashboardPageFinder, findsNothing);
-    expect(notificationsPageFinder, findsNothing);
-    expect(find.byKey(Key('homePageTitle')), findsOneWidget);
-    expect(find.text('You have pushed the button on this page 0 time(s)'),
-        findsOneWidget);
-    await tester.tap(incrementButtonFinder);
-    await tester.pump();
-    expect(find.text('You have pushed the button on this page 1 time(s)'),
-        findsOneWidget);
+  group('HomePage', () {
+    final pageFinder = find.byType(HomePage);
+    var store = HomeStore();
+
+    testWidgets('Counter starts at zero', (WidgetTester tester) async {
+      await _pumpWidget(tester, store);
+
+      expect(pageFinder, findsOneWidget);
+      expect(find.text('You have pushed the button on this page 0 time(s)'),
+          findsOneWidget);
+    });
+
+    testWidgets('Counter updates', (WidgetTester tester) async {
+      await _pumpWidget(tester, store);
+
+      store.increment();
+      await tester.pump();
+      expect(find.text('You have pushed the button on this page 1 time(s)'),
+          findsOneWidget);
+    });
   });
+}
+
+Future _pumpWidget(WidgetTester tester, HomeStore store) async {
+  await tester.pumpWidget(
+    Provider<HomeStore>(
+      builder: (_) => store,
+      child: MaterialApp(
+        home: HomePage(),
+      ),
+    ),
+  );
 }

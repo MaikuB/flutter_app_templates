@@ -9,30 +9,31 @@ part of 'destinations_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars
 
 mixin _$DestinationsStore on DestinationsStoreBase, Store {
-  Computed<Destination> _$selectedBottomNavigationDestinationComputed;
+  Computed<Destination> _$selectedDestinationComputed;
 
   @override
-  Destination get selectedDestination =>
-      (_$selectedBottomNavigationDestinationComputed ??=
-              Computed<Destination>(() => super.selectedDestination))
-          .value;
+  Destination get selectedDestination => (_$selectedDestinationComputed ??=
+          Computed<Destination>(() => super.selectedDestination))
+      .value;
 
-  final _$selectedBottomNavigationDestinationIndexAtom = Atom(
-      name: 'DestinationsStoreBase.selectedBottomNavigationDestinationIndex');
+  final _$selectedDestinationIndexAtom =
+      Atom(name: 'DestinationsStoreBase.selectedDestinationIndex');
 
   @override
   int get selectedDestinationIndex {
-    _$selectedBottomNavigationDestinationIndexAtom.reportObserved();
+    _$selectedDestinationIndexAtom.context
+        .enforceReadPolicy(_$selectedDestinationIndexAtom);
+    _$selectedDestinationIndexAtom.reportObserved();
     return super.selectedDestinationIndex;
   }
 
   @override
   set selectedDestinationIndex(int value) {
-    _$selectedBottomNavigationDestinationIndexAtom.context
-        .checkIfStateModificationsAreAllowed(
-            _$selectedBottomNavigationDestinationIndexAtom);
-    super.selectedDestinationIndex = value;
-    _$selectedBottomNavigationDestinationIndexAtom.reportChanged();
+    _$selectedDestinationIndexAtom.context.conditionallyRunInAction(() {
+      super.selectedDestinationIndex = value;
+      _$selectedDestinationIndexAtom.reportChanged();
+    }, _$selectedDestinationIndexAtom,
+        name: '${_$selectedDestinationIndexAtom.name}_set');
   }
 
   final _$DestinationsStoreBaseActionController =
