@@ -6,9 +6,9 @@ This is a template for creating a Flutter application that uses material design 
 
 The application is similar to the one created when creating an Android application that has a bottom navigation activity. It has four bottom navigation destinations: Home, Dashboard, Notifications and Settings.
 
-![Image of home page](https://crossingthestreams.io/content/images/2019/06/home-1.png) ![Image of dashboard page](https://crossingthestreams.io/content/images/2019/06/dashboard-1.png) ![Image of notifications page](https://crossingthestreams.io/content/images/2019/06/notifications-1.png)
+![Image of home page](https://crossingthestreams.io/content/images/2019/06/home-2.png) ![Image of dashboard page](https://crossingthestreams.io/content/images/2019/06/dashboard-2.png) ![Image of notifications page](https://crossingthestreams.io/content/images/2019/06/notifications-2.png) ![Image of settings page](https://crossingthestreams.io/content/images/2019/06/settings.png)
 
-Each destination has its own corresponding page and data store. Tapping on the floating action button will increment the counter related to the page that is currently being viewed.
+Each destination has its own corresponding page and data store. Tapping on the floating action button will increment the counter related to the page that is currently being viewed. The settings page allows toggling on and off the dark theme.
 
 The application is structured as follows
 

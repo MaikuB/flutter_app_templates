@@ -6,7 +6,7 @@ This is a template for creating a Flutter application that uses material design 
 
 The application is similar to the one created when creating an Android application that has a navigation drawer. It has four destinations: Home, Gallery, Slideshow and Settings. The latter allows toggling the dark mode theme on and off. This setting is saved using the [shared_preferences](https://github.com/flutter/plugins/tree/master/packages/shared_preferences) plugin.
 
-Each destination has its own corresponding page and data store. Tapping on the floating action button will increment the counter related to the page that is currently being viewed. Selecting a destination other than the home page will trigger navigating to the selected destination using routes. From there, the user has the option of tapping on the back button to go back to the home page that is configured as the initial route.
+Each destination has its own corresponding page and data store. Tapping on the floating action button will increment the counter related to the page that is currently being viewed. Selecting a destination other than the home page will trigger navigating to the selected destination using routes. From there, the user has the option of tapping on the back button to go back to the home page that is configured as the initial route. The settings page allows toggling on and off the dark theme.
 
 The application is structured as follows:
 
