@@ -5,11 +5,10 @@ import 'package:material_navigationdrawerroutes_provider_mobx/stores/home_store.
 import 'package:provider/provider.dart';
 
 void main() {
-  final homePageFinder = find.byType(HomePage);
   group('HomePage', () {
+    final homePageFinder = find.byType(HomePage);
+    var store = HomeStore();
     testWidgets('Counter updates', (WidgetTester tester) async {
-      var store = HomeStore();
-
       await tester.pumpWidget(
         Provider<HomeStore>(
           builder: (_) => store,

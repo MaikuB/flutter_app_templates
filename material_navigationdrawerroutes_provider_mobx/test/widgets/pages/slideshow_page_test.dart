@@ -5,11 +5,10 @@ import 'package:material_navigationdrawerroutes_provider_mobx/stores/slideshow_s
 import 'package:provider/provider.dart';
 
 void main() {
-  final slideshowPageFinder = find.byType(SlideshowPage);
   group('SlideshowPage', () {
+    final slideshowPageFinder = find.byType(SlideshowPage);
+    var store = SlideshowStore();
     testWidgets('Counter updates', (WidgetTester tester) async {
-      var store = SlideshowStore();
-
       await tester.pumpWidget(
         Provider<SlideshowStore>(
           builder: (_) => store,

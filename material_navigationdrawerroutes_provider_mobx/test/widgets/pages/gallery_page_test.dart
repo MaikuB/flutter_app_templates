@@ -5,11 +5,11 @@ import 'package:material_navigationdrawerroutes_provider_mobx/stores/gallery_sto
 import 'package:provider/provider.dart';
 
 void main() {
-  final galleryPageFinder = find.byType(GalleryPage);
   group('GalleryPage', () {
-    testWidgets('Counter updates', (WidgetTester tester) async {
-      var store = GalleryStore();
+    final galleryPageFinder = find.byType(GalleryPage);
+    var store = GalleryStore();
 
+    testWidgets('Counter updates', (WidgetTester tester) async {
       await tester.pumpWidget(
         Provider<GalleryStore>(
           builder: (_) => store,
