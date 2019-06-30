@@ -5,24 +5,20 @@ import 'package:material_navigationdrawer_provider_mobx/stores/slideshow_store.d
 import 'package:provider/provider.dart';
 
 void main() {
-  final slideshowPageFinder = find.byType(SlideshowPage);
   group('SlideshowPage', () {
-    testWidgets('Counter updates', (WidgetTester tester) async {
-      var store = SlideshowStore();
+    final pageFinder = find.byType(SlideshowPage);
+    var store = SlideshowStore();
 
-      await tester.pumpWidget(
-        Provider<SlideshowStore>(
-          builder: (_) => store,
-          child: MaterialApp(
-            home: SlideshowPage(),
-          ),
-        ),
-      );
+    testWidgets('Counter starts at zero', (WidgetTester tester) async {
+      await _pumpWidget(tester, store);
 
-      expect(slideshowPageFinder, findsOneWidget);
-      expect(find.byKey(Key('slideshowPageTitle')), findsOneWidget);
+      expect(pageFinder, findsOneWidget);
       expect(find.text('You have pushed the button on this page 0 time(s)'),
           findsOneWidget);
+    });
+
+    testWidgets('Counter updates', (WidgetTester tester) async {
+      await _pumpWidget(tester, store);
 
       store.increment();
       await tester.pump();
@@ -30,4 +26,15 @@ void main() {
           findsOneWidget);
     });
   });
+}
+
+Future _pumpWidget(WidgetTester tester, SlideshowStore store) async {
+  await tester.pumpWidget(
+    Provider<SlideshowStore>(
+      builder: (_) => store,
+      child: MaterialApp(
+        home: SlideshowPage(),
+      ),
+    ),
+  );
 }

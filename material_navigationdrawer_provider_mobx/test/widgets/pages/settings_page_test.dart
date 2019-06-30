@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:material_navigationdrawerroutes_provider_mobx/constants/keys.dart';
-import 'package:material_navigationdrawerroutes_provider_mobx/pages/settings_page.dart';
-import 'package:material_navigationdrawerroutes_provider_mobx/services/preferences_service.dart';
-import 'package:material_navigationdrawerroutes_provider_mobx/stores/settings_store.dart';
+import 'package:material_navigationdrawer_provider_mobx/constants/keys.dart';
+import 'package:material_navigationdrawer_provider_mobx/pages/settings_page.dart';
+import 'package:material_navigationdrawer_provider_mobx/services/preferences_service.dart';
+import 'package:material_navigationdrawer_provider_mobx/stores/settings_store.dart';
 import 'package:provider/provider.dart';
 import '../../mocks/mock_shared_preferences.dart';
 
@@ -15,14 +15,7 @@ void main() {
     final pageFinder = find.byType(SettingsPage);
     final useDarkModeSettingFinder = find.byKey(Keys.useDarkModeSettingKey);
     testWidgets('Dark mode setting starts at off', (WidgetTester tester) async {
-      await tester.pumpWidget(
-        Provider<SettingsStore>(
-          builder: (_) => store,
-          child: MaterialApp(
-            home: SettingsPage(),
-          ),
-        ),
-      );
+      await _pumpWidget(tester, store);
 
       expect(pageFinder, findsOneWidget);
       expect(useDarkModeSettingFinder, findsOneWidget);
@@ -30,18 +23,24 @@ void main() {
     });
 
     testWidgets('Turn dark mode on', (WidgetTester tester) async {
-      await tester.pumpWidget(
-        Provider<SettingsStore>(
-          builder: (_) => store,
-          child: MaterialApp(
-            home: SettingsPage(),
-          ),
-        ),
-      );
+      await _pumpWidget(tester, store);
 
       await tester.tap(useDarkModeSettingFinder);
       await tester.pumpAndSettle();
       expect(store.useDarkMode, true);
     });
   });
+}
+
+Future _pumpWidget(WidgetTester tester, SettingsStore store) async {
+  await tester.pumpWidget(
+    Provider<SettingsStore>(
+      builder: (_) => store,
+      child: MaterialApp(
+        home: Scaffold(
+          body: SettingsPage(),
+        ),
+      ),
+    ),
+  );
 }

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:material_navigationdrawerroutes_provider_mobx/pages/settings_page.dart';
-import 'package:material_navigationdrawerroutes_provider_mobx/services/preferences_service.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'constants/keys.dart';
 import 'constants/routes.dart';
+import 'services/preferences_service.dart';
 import 'stores/home_store.dart';
 import 'stores/gallery_store.dart';
 import 'stores/slideshow_store.dart';

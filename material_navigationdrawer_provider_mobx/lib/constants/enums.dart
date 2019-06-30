@@ -1,1 +1,1 @@
-enum Destination { Home, Gallery, Slideshow }
+enum Destination { Home, Gallery, Slideshow, Settings }

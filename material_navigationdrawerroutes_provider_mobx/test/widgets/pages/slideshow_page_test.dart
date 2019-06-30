@@ -6,9 +6,9 @@ import 'package:provider/provider.dart';
 
 void main() {
   group('SlideshowPage', () {
-    final slideshowPageFinder = find.byType(SlideshowPage);
+    final pageFinder = find.byType(SlideshowPage);
     var store = SlideshowStore();
-    testWidgets('Counter updates', (WidgetTester tester) async {
+    testWidgets('Counter starts at zero', (WidgetTester tester) async {
       await tester.pumpWidget(
         Provider<SlideshowStore>(
           builder: (_) => store,
@@ -18,9 +18,20 @@ void main() {
         ),
       );
 
-      expect(slideshowPageFinder, findsOneWidget);
+      expect(pageFinder, findsOneWidget);
       expect(find.text('You have pushed the button on this page 0 time(s)'),
           findsOneWidget);
+    });
+
+    testWidgets('Counter updates', (WidgetTester tester) async {
+      await tester.pumpWidget(
+        Provider<SlideshowStore>(
+          builder: (_) => store,
+          child: MaterialApp(
+            home: SlideshowPage(),
+          ),
+        ),
+      );
 
       store.increment();
       await tester.pump();

@@ -5,24 +5,18 @@ import 'package:material_navigationdrawer_provider_mobx/stores/home_store.dart';
 import 'package:provider/provider.dart';
 
 void main() {
-  final homePageFinder = find.byType(HomePage);
   group('HomePage', () {
-    testWidgets('Counter updates', (WidgetTester tester) async {
-      var store = HomeStore();
+    final pageFinder = find.byType(HomePage);
+    var store = HomeStore();
+    testWidgets('Counter starts at zero', (WidgetTester tester) async {
+      await _pumpWidget(tester, store);
 
-      await tester.pumpWidget(
-        Provider<HomeStore>(
-          builder: (_) => store,
-          child: MaterialApp(
-            home: HomePage(),
-          ),
-        ),
-      );
-
-      expect(homePageFinder, findsOneWidget);
-      expect(find.byKey(Key('homePageTitle')), findsOneWidget);
+      expect(pageFinder, findsOneWidget);
       expect(find.text('You have pushed the button on this page 0 time(s)'),
           findsOneWidget);
+    });
+    testWidgets('Counter updates', (WidgetTester tester) async {
+      await _pumpWidget(tester, store);
 
       store.increment();
       await tester.pump();
@@ -30,4 +24,15 @@ void main() {
           findsOneWidget);
     });
   });
+}
+
+Future _pumpWidget(WidgetTester tester, HomeStore store) async {
+  await tester.pumpWidget(
+    Provider<HomeStore>(
+      builder: (_) => store,
+      child: MaterialApp(
+        home: HomePage(),
+      ),
+    ),
+  );
 }

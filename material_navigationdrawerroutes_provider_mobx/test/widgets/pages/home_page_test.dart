@@ -6,9 +6,9 @@ import 'package:provider/provider.dart';
 
 void main() {
   group('HomePage', () {
-    final homePageFinder = find.byType(HomePage);
+    final pageFinder = find.byType(HomePage);
     var store = HomeStore();
-    testWidgets('Counter updates', (WidgetTester tester) async {
+    testWidgets('Counter starts at zero', (WidgetTester tester) async {
       await tester.pumpWidget(
         Provider<HomeStore>(
           builder: (_) => store,
@@ -18,9 +18,20 @@ void main() {
         ),
       );
 
-      expect(homePageFinder, findsOneWidget);
+      expect(pageFinder, findsOneWidget);
       expect(find.text('You have pushed the button on this page 0 time(s)'),
           findsOneWidget);
+    });
+
+    testWidgets('Counter updates', (WidgetTester tester) async {
+      await tester.pumpWidget(
+        Provider<HomeStore>(
+          builder: (_) => store,
+          child: MaterialApp(
+            home: HomePage(),
+          ),
+        ),
+      );
 
       store.increment();
       await tester.pump();

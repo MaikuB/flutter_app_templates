@@ -5,24 +5,18 @@ import 'package:material_navigationdrawer_provider_mobx/stores/gallery_store.dar
 import 'package:provider/provider.dart';
 
 void main() {
-  final galleryPageFinder = find.byType(GalleryPage);
   group('GalleryPage', () {
-    testWidgets('Counter updates', (WidgetTester tester) async {
-      var store = GalleryStore();
+    final pageFinder = find.byType(GalleryPage);
+    var store = GalleryStore();
+    testWidgets('Counter starts at zero', (WidgetTester tester) async {
+      await _pumpWidget(tester, store);
 
-      await tester.pumpWidget(
-        Provider<GalleryStore>(
-          builder: (_) => store,
-          child: MaterialApp(
-            home: GalleryPage(),
-          ),
-        ),
-      );
-
-      expect(galleryPageFinder, findsOneWidget);
-      expect(find.byKey(Key('galleryPageTitle')), findsOneWidget);
+      expect(pageFinder, findsOneWidget);
       expect(find.text('You have pushed the button on this page 0 time(s)'),
           findsOneWidget);
+    });
+    testWidgets('Counter updates', (WidgetTester tester) async {
+      await _pumpWidget(tester, store);
 
       store.increment();
       await tester.pump();
@@ -30,4 +24,15 @@ void main() {
           findsOneWidget);
     });
   });
+}
+
+Future _pumpWidget(WidgetTester tester, GalleryStore store) async {
+  await tester.pumpWidget(
+    Provider<GalleryStore>(
+      builder: (_) => store,
+      child: MaterialApp(
+        home: GalleryPage(),
+      ),
+    ),
+  );
 }

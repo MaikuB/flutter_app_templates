@@ -6,8 +6,22 @@ import 'package:provider/provider.dart';
 
 void main() {
   group('GalleryPage', () {
-    final galleryPageFinder = find.byType(GalleryPage);
+    final pageFinder = find.byType(GalleryPage);
     var store = GalleryStore();
+    testWidgets('Counter starts at zero', (WidgetTester tester) async {
+      await tester.pumpWidget(
+        Provider<GalleryStore>(
+          builder: (_) => store,
+          child: MaterialApp(
+            home: GalleryPage(),
+          ),
+        ),
+      );
+
+      expect(pageFinder, findsOneWidget);
+      expect(find.text('You have pushed the button on this page 0 time(s)'),
+          findsOneWidget);
+    });
 
     testWidgets('Counter updates', (WidgetTester tester) async {
       await tester.pumpWidget(
@@ -18,10 +32,6 @@ void main() {
           ),
         ),
       );
-
-      expect(galleryPageFinder, findsOneWidget);
-      expect(find.text('You have pushed the button on this page 0 time(s)'),
-          findsOneWidget);
 
       store.increment();
       await tester.pump();

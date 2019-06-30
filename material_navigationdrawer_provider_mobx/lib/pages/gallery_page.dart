@@ -14,19 +14,9 @@ class GalleryPage extends StatelessWidget {
         return Observer(
           builder: (context) {
             return Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Gallery',
-                    key: Keys.galleryPageTitleKey,
-                    style: Theme.of(context).textTheme.title,
-                  ),
-                  Text(
-                    'You have pushed the button on this page ${store.counter} time(s)',
-                    key: Keys.galleryPageCounterKey,
-                  ),
-                ],
+              child: Text(
+                'You have pushed the button on this page ${store.counter} time(s)',
+                key: Keys.galleryPageCounterKey,
               ),
             );
           },
