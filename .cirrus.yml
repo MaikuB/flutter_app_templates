@@ -48,9 +48,7 @@ task:
   start_emulator_background_script:
     $ANDROID_HOME/emulator/emulator -avd test -no-audio -no-window
   wait_for_emulator_script:
-    - cd scripts
-    - chmod +x android-wait-for-emulator.sh
-    - ./android-wait-for-emulator.sh
+    android-wait-for-emulator
   test_script: 
     - cd $template
     - flutter drive --target=test_driver/app.dart
