@@ -9,14 +9,7 @@ void main() {
     final pageFinder = find.byType(SlideshowPage);
     var store = SlideshowStore();
     testWidgets('Counter starts at zero', (WidgetTester tester) async {
-      await tester.pumpWidget(
-        Provider<SlideshowStore>(
-          builder: (_) => store,
-          child: MaterialApp(
-            home: SlideshowPage(),
-          ),
-        ),
-      );
+      await _pumpWidget(tester, store);
 
       expect(pageFinder, findsOneWidget);
       expect(find.text('You have pushed the button on this page 0 time(s)'),
@@ -24,14 +17,7 @@ void main() {
     });
 
     testWidgets('Counter updates', (WidgetTester tester) async {
-      await tester.pumpWidget(
-        Provider<SlideshowStore>(
-          builder: (_) => store,
-          child: MaterialApp(
-            home: SlideshowPage(),
-          ),
-        ),
-      );
+      await _pumpWidget(tester, store);
 
       store.increment();
       await tester.pump();
@@ -39,4 +25,15 @@ void main() {
           findsOneWidget);
     });
   });
+}
+
+Future _pumpWidget(WidgetTester tester, SlideshowStore store) async {
+  await tester.pumpWidget(
+    Provider<SlideshowStore>(
+      builder: (_) => store,
+      child: MaterialApp(
+        home: SlideshowPage(),
+      ),
+    ),
+  );
 }

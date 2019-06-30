@@ -11,4 +11,8 @@ class Keys {
   static final notificationsPageKey = Key('notificationsPage');
   static final notificationsPageTitleKey = Key('notificationsPageTitle');
   static final notificationsPageCounterKey = Key('notificationsPageCounter');
+  static const settingsDrawerItemKey = Key('settingsDrawerItem');
+  static const settingsPageKey = Key('settingsPage');
+  static const settingsPageTitleKey = Key('settingsPageTitle');
+  static const useDarkModeSettingKey = Key('useDarkModeSetting');
 }

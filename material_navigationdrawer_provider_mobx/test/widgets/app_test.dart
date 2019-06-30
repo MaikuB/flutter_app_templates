@@ -151,7 +151,7 @@ void main() {
       // drawer should now be closed
       expect(drawerFinder, findsNothing);
 
-      // should now be on slideshow page
+      // should now be on settings page
       expect(homePageFinder, findsNothing);
       expect(galleryPageFinder, findsNothing);
       expect(slideshowPageFinder, findsNothing);

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:material_navigationdrawerroutes_provider_mobx/constants/keys.dart';
-import 'package:material_navigationdrawerroutes_provider_mobx/pages/settings_page.dart';
-import 'package:material_navigationdrawerroutes_provider_mobx/services/preferences_service.dart';
-import 'package:material_navigationdrawerroutes_provider_mobx/stores/settings_store.dart';
+import 'package:material_bottomnavigation_provider_mobx/constants/keys.dart';
+import 'package:material_bottomnavigation_provider_mobx/pages/settings_page.dart';
+import 'package:material_bottomnavigation_provider_mobx/services/preferences_service.dart';
+import 'package:material_bottomnavigation_provider_mobx/stores/settings_store.dart';
 import 'package:provider/provider.dart';
 import '../../mocks/mock_shared_preferences.dart';
 
@@ -37,7 +37,9 @@ Future _pumpWidget(WidgetTester tester, SettingsStore store) async {
     Provider<SettingsStore>(
       builder: (_) => store,
       child: MaterialApp(
-        home: SettingsPage(),
+        home: Scaffold(
+          body: SettingsPage(),
+        ),
       ),
     ),
   );

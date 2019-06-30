@@ -6,24 +6,20 @@ import 'package:material_bottomnavigation_provider_mobx/stores/home_store.dart';
 import 'package:provider/provider.dart';
 
 void main() {
-  final pageFinder = find.byType(HomePage);
   group('HomePage', () {
-    testWidgets('Counter updates', (WidgetTester tester) async {
-      var store = HomeStore();
+    final pageFinder = find.byType(HomePage);
+    var store = HomeStore();
 
-      await tester.pumpWidget(
-        Provider<HomeStore>(
-          builder: (_) => store,
-          child: MaterialApp(
-            home: HomePage(),
-          ),
-        ),
-      );
+    testWidgets('Counter starts at zero', (WidgetTester tester) async {
+      await _pumpWidget(tester, store);
 
       expect(pageFinder, findsOneWidget);
-      expect(find.byKey(Keys.homePageTitleKey), findsOneWidget);
       expect(find.text('You have pushed the button on this page 0 time(s)'),
           findsOneWidget);
+    });
+
+    testWidgets('Counter updates', (WidgetTester tester) async {
+      await _pumpWidget(tester, store);
 
       store.increment();
       await tester.pump();
@@ -31,4 +27,15 @@ void main() {
           findsOneWidget);
     });
   });
+}
+
+Future _pumpWidget(WidgetTester tester, HomeStore store) async {
+  await tester.pumpWidget(
+    Provider<HomeStore>(
+      builder: (_) => store,
+      child: MaterialApp(
+        home: HomePage(),
+      ),
+    ),
+  );
 }

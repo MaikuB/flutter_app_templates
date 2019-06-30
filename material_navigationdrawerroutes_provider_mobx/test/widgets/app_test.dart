@@ -25,7 +25,7 @@ void main() async {
     final mockedSharedPreferences = MockedSharedPreferences();
     testWidgets('Starts on home page with drawer closed',
         (WidgetTester tester) async {
-      await tester.pumpWidget(App(mockedSharedPreferences));
+      await _pumpWidget(tester, mockedSharedPreferences);
       expect(drawerMenuButtonFinder, findsOneWidget);
       expect(drawerFinder, findsNothing);
       expect(homePageFinder, findsOneWidget);
@@ -39,7 +39,7 @@ void main() async {
     });
 
     testWidgets('Drawer exists', (WidgetTester tester) async {
-      await tester.pumpWidget(App(mockedSharedPreferences));
+      await _pumpWidget(tester, mockedSharedPreferences);
       await openDrawer(
           tester,
           drawerMenuButtonFinder,
@@ -51,7 +51,7 @@ void main() async {
     });
 
     testWidgets('Select home page', (WidgetTester tester) async {
-      await tester.pumpWidget(App(mockedSharedPreferences));
+      await _pumpWidget(tester, mockedSharedPreferences);
       await openDrawer(
           tester,
           drawerMenuButtonFinder,
@@ -80,7 +80,7 @@ void main() async {
     });
 
     testWidgets('Select gallery page', (WidgetTester tester) async {
-      await tester.pumpWidget(App(mockedSharedPreferences));
+      await _pumpWidget(tester, mockedSharedPreferences);
       await openDrawer(
           tester,
           drawerMenuButtonFinder,
@@ -109,7 +109,7 @@ void main() async {
     });
 
     testWidgets('Select slideshow page', (WidgetTester tester) async {
-      await tester.pumpWidget(App(mockedSharedPreferences));
+      await _pumpWidget(tester, mockedSharedPreferences);
       await openDrawer(
           tester,
           drawerMenuButtonFinder,
@@ -138,7 +138,7 @@ void main() async {
     });
 
     testWidgets('Select settings page', (WidgetTester tester) async {
-      await tester.pumpWidget(App(mockedSharedPreferences));
+      await _pumpWidget(tester, mockedSharedPreferences);
       await openDrawer(
           tester,
           drawerMenuButtonFinder,
@@ -156,7 +156,7 @@ void main() async {
       expect(drawerFinder, findsNothing);
       expect(backButtonFinder, findsOneWidget);
 
-      // should now be on slideshow page
+      // should now be on settings page
       expect(homePageFinder, findsNothing);
       expect(galleryPageFinder, findsNothing);
       expect(slideshowPageFinder, findsNothing);
@@ -165,6 +165,11 @@ void main() async {
       expect(find.byType(SwitchListTile), findsOneWidget);
     });
   });
+}
+
+Future _pumpWidget(WidgetTester tester,
+    MockedSharedPreferences mockedSharedPreferences) async {
+  await tester.pumpWidget(App(mockedSharedPreferences));
 }
 
 Future openDrawer(

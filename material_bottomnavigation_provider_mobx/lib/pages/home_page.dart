@@ -13,19 +13,9 @@ class HomePage extends StatelessWidget {
       return Observer(
         builder: (context) {
           return Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  'Home',
-                  key: Keys.homePageTitleKey,
-                  style: Theme.of(context).textTheme.title,
-                ),
-                Text(
-                  'You have pushed the button on this page ${store.counter} time(s)',
-                  key: Keys.homePageCounterKey,
-                ),
-              ],
+            child: Text(
+              'You have pushed the button on this page ${store.counter} time(s)',
+              key: Keys.homePageCounterKey,
             ),
           );
         },

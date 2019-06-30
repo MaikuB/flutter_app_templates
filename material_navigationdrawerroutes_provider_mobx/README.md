@@ -4,7 +4,7 @@ This is a template for creating a Flutter application that uses material design 
 
 ## Overview
 
-The application is similar to the one created when creating an Android application that has a navigation drawer. It has fourt destinations: Home, Gallery, Slideshow and Settings. The latter allows toggling the dark mode theme on and off. This setting is saved using the [shared_preferences](https://github.com/flutter/plugins/tree/master/packages/shared_preferences) plugin
+The application is similar to the one created when creating an Android application that has a navigation drawer. It has four destinations: Home, Gallery, Slideshow and Settings. The latter allows toggling the dark mode theme on and off. This setting is saved using the [shared_preferences](https://github.com/flutter/plugins/tree/master/packages/shared_preferences) plugin.
 
 Each destination has its own corresponding page and data store. Tapping on the floating action button will increment the counter related to the page that is currently being viewed. Selecting a destination other than the home page will trigger navigating to the selected destination using routes. From there, the user has the option of tapping on the back button to go back to the home page that is configured as the initial route.
 
@@ -19,8 +19,8 @@ The application is structured as follows:
   - `stores` - has all of the data stores associated with each page/destination
   - `main.dart` - the entry point for the application and contains the top-level widgets for the application itself
 - `test`
-  - `stores` - this folder has unit tests for all of the stores
   - `mocks` - for storing mocks that will be used by various tests
+  - `stores` - this folder has unit tests for all of the stores
   - `widgets` - this folder contains all of the widget tests
     - `pages` - this folder that has files represent widget tests that are tied to pages
     - `app_test.dart` - for doing tests on widgets that are at the top-level e.g. checking bottom navigation bar exists and works

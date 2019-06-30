@@ -14,19 +14,9 @@ class NotificationsPage extends StatelessWidget {
         return Observer(
           builder: (context) {
             return Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Notifications',
-                    key: Keys.notificationsPageTitleKey,
-                    style: Theme.of(context).textTheme.title,
-                  ),
-                  Text(
-                    'You have pushed the button on this page ${store.counter} time(s)',
-                    key: Keys.notificationsPageCounterKey,
-                  ),
-                ],
+              child: Text(
+                'You have pushed the button on this page ${store.counter} time(s)',
+                key: Keys.notificationsPageCounterKey,
               ),
             );
           },

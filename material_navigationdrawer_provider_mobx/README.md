@@ -12,15 +12,15 @@ The application is structured as follows
 
 - `lib`
   - `constants` - this folder is where all application-level constants are kept
-    - `enums.dart` - to maintain all the application-level enums. For this application, a `Destination` enum is defined that represents all of the destinations: `Home`, `Gallery` and `Slideshow`
+    - `enums.dart` - to maintain all the application-level enums. For this application, a `Destination` enum is defined that represents all of the destinations: `Home`, `Gallery`, `Slideshow` and `Settings`
     - `keys.dart` - to maintain the keys associated with the various widgets in the application
   - `pages` - has the pages associated with the destinations. Each page has a different title will maintain a separate counter to help demonstrate that each page has its own state
   - `services` - has all of the application services used e.g. a service for managing shared preferences
   - `stores` - has all of the data stores associated with each page/destination
   - `main.dart` - the entry point for the application and contains the top-level widgets for the application itself
 - `test`
-  - `stores` - this folder has unit tests for all of the stores
   - `mocks` - for storing mocks that will be used by various tests
+  - `stores` - this folder has unit tests for all of the stores
   - `widgets` - this folder contains all of the widget tests
     - `pages` - this folder that has files represent widget tests that are tied to pages
     - `app_test.dart` - for doing tests on widgets that are at the top-level e.g. checking bottom navigation bar exists and works
