@@ -5,7 +5,7 @@ import '../constants/keys.dart';
 import '../stores/settings_store.dart';
 
 class SettingsPage extends StatelessWidget {
-  SettingsPage({Key key}) : super(key: key);
+  const SettingsPage({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class SettingsPage extends StatelessWidget {
             return SwitchListTile(
               key: Keys.useDarkModeSettingKey,
               value: store.useDarkMode,
-              title: Text('Use dark mode'),
+              title: const Text('Use dark mode'),
               onChanged: (value) {
                 store.setDarkMode(value);
               },

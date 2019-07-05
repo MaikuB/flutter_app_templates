@@ -4,16 +4,16 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'constants/enums.dart';
 import 'constants/keys.dart';
-import 'services/preferences_service.dart';
-import 'stores/destinations_store.dart';
-import 'stores/home_store.dart';
-import 'stores/dashboard_store.dart';
-import 'stores/notifications_store.dart';
-import 'stores/settings_store.dart';
-import 'pages/home_page.dart';
 import 'pages/dashboard_page.dart';
+import 'pages/home_page.dart';
 import 'pages/notifications_page.dart';
 import 'pages/settings_page.dart';
+import 'services/preferences_service.dart';
+import 'stores/dashboard_store.dart';
+import 'stores/destinations_store.dart';
+import 'stores/home_store.dart';
+import 'stores/notifications_store.dart';
+import 'stores/settings_store.dart';
 
 void main() async {
   final sharedPreferences = await SharedPreferences.getInstance();
@@ -21,9 +21,10 @@ void main() async {
 }
 
 class App extends StatelessWidget {
+  const App(this.sharedPreferences, {Key key}) : super(key: key);
+
   final SharedPreferences sharedPreferences;
 
-  const App(this.sharedPreferences, {Key key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -92,7 +93,7 @@ class App extends StatelessWidget {
                                         break;
                                     }
                                   },
-                                  child: Icon(Icons.add),
+                                  child: const Icon(Icons.add),
                                 ),
                         );
                       },
@@ -109,35 +110,37 @@ class App extends StatelessWidget {
 }
 
 class AppBarTitle extends StatelessWidget {
-  final Destination destination;
   const AppBarTitle(this.destination, {Key key}) : super(key: key);
+
+  final Destination destination;
 
   @override
   Widget build(BuildContext context) {
     switch (destination) {
       case Destination.Dashboard:
-        return Text('Dashboard', key: Keys.dashboardPageTitleKey);
+        return const Text('Dashboard', key: Keys.dashboardPageTitleKey);
       case Destination.Notifications:
-        return Text('Notifications', key: Keys.notificationsPageTitleKey);
+        return const Text('Notifications', key: Keys.notificationsPageTitleKey);
       case Destination.Settings:
-        return Text('Settings', key: Keys.settingsPageTitleKey);
+        return const Text('Settings', key: Keys.settingsPageTitleKey);
       default:
-        return Text('Home', key: Keys.homePageTitleKey);
+        return const Text('Home', key: Keys.homePageTitleKey);
     }
   }
 }
 
 class AppBottomNavigationBar extends StatelessWidget {
-  final DestinationsStore store;
   const AppBottomNavigationBar(
     this.store, {
     Key key,
   }) : super(key: key);
 
+  final DestinationsStore store;
+
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-      key: Key('bottomNavigationBar'),
+      key: const Key('bottomNavigationBar'),
       selectedItemColor: Colors.blue,
       unselectedItemColor: Colors.grey,
       currentIndex: store.selectedDestinationIndex,
@@ -145,22 +148,22 @@ class AppBottomNavigationBar extends StatelessWidget {
         (option) {
           switch (option) {
             case Destination.Home:
-              return BottomNavigationBarItem(
+              return const BottomNavigationBarItem(
                 icon: Icon(Icons.home),
                 title: Text('Home'),
               );
             case Destination.Dashboard:
-              return BottomNavigationBarItem(
+              return const BottomNavigationBarItem(
                 icon: Icon(Icons.dashboard),
                 title: Text('Dashboard'),
               );
             case Destination.Notifications:
-              return BottomNavigationBarItem(
+              return const BottomNavigationBarItem(
                 icon: Icon(Icons.notifications),
                 title: Text('Notifications'),
               );
             case Destination.Settings:
-              return BottomNavigationBarItem(
+              return const BottomNavigationBarItem(
                 icon: Icon(Icons.settings),
                 title: Text('Settings'),
               );
@@ -173,21 +176,21 @@ class AppBottomNavigationBar extends StatelessWidget {
 }
 
 class PageContainer extends StatelessWidget {
-  final Destination destination;
-
   const PageContainer(this.destination, {Key key}) : super(key: key);
+
+  final Destination destination;
 
   @override
   Widget build(BuildContext context) {
     switch (destination) {
       case Destination.Dashboard:
-        return DashboardPage(key: Keys.dashboardPageKey);
+        return const DashboardPage(key: Keys.dashboardPageKey);
       case Destination.Notifications:
-        return NotificationsPage(key: Keys.notificationsPageKey);
+        return const NotificationsPage(key: Keys.notificationsPageKey);
       case Destination.Settings:
-        return SettingsPage(key: Keys.settingsPageKey);
+        return const SettingsPage(key: Keys.settingsPageKey);
       default:
-        return HomePage(key: Keys.homePageKey);
+        return const HomePage(key: Keys.homePageKey);
     }
   }
 }

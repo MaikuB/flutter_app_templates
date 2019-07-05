@@ -1,16 +1,16 @@
 import 'package:flutter/widgets.dart';
 
 class Keys {
-  static final incrementButtonKey = Key('incrementButton');
-  static final dashboardPageKey = Key('dashboardPage');
-  static final dashboardPageTitleKey = Key('dashboardPageTitle');
-  static final dashboardPageCounterKey = Key('dashboardPageCounter');
-  static final homePageKey = Key('homePage');
-  static final homePageTitleKey = Key('homePageTitle');
-  static final homePageCounterKey = Key('homePageCounter');
-  static final notificationsPageKey = Key('notificationsPage');
-  static final notificationsPageTitleKey = Key('notificationsPageTitle');
-  static final notificationsPageCounterKey = Key('notificationsPageCounter');
+  static const incrementButtonKey = Key('incrementButton');
+  static const dashboardPageKey = Key('dashboardPage');
+  static const dashboardPageTitleKey = Key('dashboardPageTitle');
+  static const dashboardPageCounterKey = Key('dashboardPageCounter');
+  static const homePageKey = Key('homePage');
+  static const homePageTitleKey = Key('homePageTitle');
+  static const homePageCounterKey = Key('homePageCounter');
+  static const notificationsPageKey = Key('notificationsPage');
+  static const notificationsPageTitleKey = Key('notificationsPageTitle');
+  static const notificationsPageCounterKey = Key('notificationsPageCounter');
   static const settingsDrawerItemKey = Key('settingsDrawerItem');
   static const settingsPageKey = Key('settingsPage');
   static const settingsPageTitleKey = Key('settingsPageTitle');

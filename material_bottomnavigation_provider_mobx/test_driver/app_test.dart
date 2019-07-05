@@ -26,7 +26,7 @@ void main() {
     });
 
     test('check flutter driver health', () async {
-      Health health = await driver.checkHealth();
+      final health = await driver.checkHealth();
       print('flutter driver status: ${health.status}');
     });
 

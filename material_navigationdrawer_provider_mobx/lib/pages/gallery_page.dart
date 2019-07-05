@@ -5,7 +5,7 @@ import '../constants/keys.dart';
 import '../stores/gallery_store.dart';
 
 class GalleryPage extends StatelessWidget {
-  GalleryPage({Key key}) : super(key: key);
+  const GalleryPage({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -5,7 +5,7 @@ import '../constants/keys.dart';
 import '../stores/slideshow_store.dart';
 
 class SlideshowPage extends StatelessWidget {
-  SlideshowPage({Key key}) : super(key: key);
+  const SlideshowPage({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

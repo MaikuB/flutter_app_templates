@@ -6,7 +6,7 @@ part 'destinations_store.g.dart';
 class DestinationsStore = DestinationsStoreBase with _$DestinationsStore;
 
 abstract class DestinationsStoreBase with Store {
-  static final List<Destination> destinations = Destination.values;
+  static const List<Destination> destinations = Destination.values;
 
   @observable
   Destination selectedDestination = Destination.Home;

@@ -4,16 +4,16 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'constants/enums.dart';
 import 'constants/keys.dart';
+import 'pages/gallery_page.dart';
+import 'pages/home_page.dart';
+import 'pages/settings_page.dart';
+import 'pages/slideshow_page.dart';
 import 'services/preferences_service.dart';
 import 'stores/destinations_store.dart';
-import 'stores/home_store.dart';
 import 'stores/gallery_store.dart';
-import 'stores/slideshow_store.dart';
+import 'stores/home_store.dart';
 import 'stores/settings_store.dart';
-import 'pages/home_page.dart';
-import 'pages/gallery_page.dart';
-import 'pages/slideshow_page.dart';
-import 'pages/settings_page.dart';
+import 'stores/slideshow_store.dart';
 
 void main() async {
   final sharedPreferences = await SharedPreferences.getInstance();
@@ -21,9 +21,9 @@ void main() async {
 }
 
 class App extends StatelessWidget {
-  final SharedPreferences sharedPreferences;
+  const App(this.sharedPreferences);
 
-  App(this.sharedPreferences);
+  final SharedPreferences sharedPreferences;
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +56,7 @@ class App extends StatelessWidget {
               return MaterialApp(
                 title: 'App title',
                 theme: store.useDarkMode ? ThemeData.dark() : ThemeData.light(),
-                home: AppScaffold(),
+                home: const AppScaffold(),
               );
             },
           );
@@ -89,7 +89,7 @@ class AppScaffold extends StatelessWidget {
                       Destination.Settings
                   ? null
                   : FloatingActionButton(
-                      key: Key('incrementButton'),
+                      key: const Key('incrementButton'),
                       onPressed: () {
                         switch (store.selectedDestination) {
                           case Destination.Home:
@@ -106,7 +106,7 @@ class AppScaffold extends StatelessWidget {
                         }
                       },
                       tooltip: 'Increment',
-                      child: Icon(Icons.add),
+                      child: const Icon(Icons.add),
                     ),
             );
           },
@@ -117,30 +117,32 @@ class AppScaffold extends StatelessWidget {
 }
 
 class AppBarTitle extends StatelessWidget {
-  final Destination destination;
   const AppBarTitle(this.destination, {Key key}) : super(key: key);
+
+  final Destination destination;
 
   @override
   Widget build(BuildContext context) {
     switch (destination) {
       case Destination.Gallery:
-        return Text('Gallery', key: Keys.galleryPageTitleKey);
+        return const Text('Gallery', key: Keys.galleryPageTitleKey);
       case Destination.Slideshow:
-        return Text('Slideshow', key: Keys.slideshowPageTitleKey);
+        return const Text('Slideshow', key: Keys.slideshowPageTitleKey);
       case Destination.Settings:
-        return Text('Settings', key: Keys.settingsPageTitleKey);
+        return const Text('Settings', key: Keys.settingsPageTitleKey);
       default:
-        return Text('Home', key: Keys.homePageTitleKey);
+        return const Text('Home', key: Keys.homePageTitleKey);
     }
   }
 }
 
 class AppDrawer extends StatelessWidget {
-  final DestinationsStore store;
-  AppDrawer(
+  const AppDrawer(
     this.store, {
     Key key,
   }) : super(key: key);
+
+  final DestinationsStore store;
 
   @override
   Widget build(BuildContext context) {
@@ -150,7 +152,7 @@ class AppDrawer extends StatelessWidget {
           child: ListView(
             padding: EdgeInsets.zero,
             children: [
-              UserAccountsDrawerHeader(
+              const UserAccountsDrawerHeader(
                 accountName: Text('User'),
                 accountEmail: Text('user@email.com'),
                 currentAccountPicture: CircleAvatar(
@@ -159,8 +161,8 @@ class AppDrawer extends StatelessWidget {
               ),
               ListTile(
                 key: Keys.homeDrawerItemKey,
-                leading: Icon(Icons.home),
-                title: Text('Home'),
+                leading: const Icon(Icons.home),
+                title: const Text('Home'),
                 selected: store.selectedDestination == Destination.Home,
                 onTap: () {
                   Navigator.pop(context);
@@ -169,8 +171,8 @@ class AppDrawer extends StatelessWidget {
               ),
               ListTile(
                 key: Keys.galleryDrawerItemKey,
-                leading: Icon(Icons.photo_library),
-                title: Text('Gallery'),
+                leading: const Icon(Icons.photo_library),
+                title: const Text('Gallery'),
                 selected: store.selectedDestination == Destination.Gallery,
                 onTap: () async {
                   Navigator.pop(context);
@@ -179,8 +181,8 @@ class AppDrawer extends StatelessWidget {
               ),
               ListTile(
                 key: Keys.slideshowDrawerItemKey,
-                leading: Icon(Icons.slideshow),
-                title: Text('Slideshow'),
+                leading: const Icon(Icons.slideshow),
+                title: const Text('Slideshow'),
                 selected: store.selectedDestination == Destination.Slideshow,
                 onTap: () async {
                   Navigator.pop(context);
@@ -190,8 +192,8 @@ class AppDrawer extends StatelessWidget {
               Divider(),
               ListTile(
                 key: Keys.settingsDrawerItemKey,
-                leading: Icon(Icons.settings),
-                title: Text('Settings'),
+                leading: const Icon(Icons.settings),
+                title: const Text('Settings'),
                 selected: store.selectedDestination == Destination.Settings,
                 onTap: () async {
                   Navigator.pop(context);
@@ -207,20 +209,21 @@ class AppDrawer extends StatelessWidget {
 }
 
 class PageContainer extends StatelessWidget {
-  final Destination destination;
   const PageContainer(this.destination, {Key key}) : super(key: key);
+
+  final Destination destination;
 
   @override
   Widget build(BuildContext context) {
     switch (destination) {
       case Destination.Gallery:
-        return GalleryPage(key: Keys.galleryPageKey);
+        return const GalleryPage(key: Keys.galleryPageKey);
       case Destination.Slideshow:
-        return SlideshowPage(key: Keys.slideshowPageKey);
+        return const SlideshowPage(key: Keys.slideshowPageKey);
       case Destination.Settings:
-        return SettingsPage(key: Keys.settingsPageKey);
+        return const SettingsPage(key: Keys.settingsPageKey);
       default:
-        return HomePage(key: Keys.homePageKey);
+        return const HomePage(key: Keys.homePageKey);
     }
   }
 }

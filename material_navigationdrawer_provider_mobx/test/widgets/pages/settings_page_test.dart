@@ -11,7 +11,7 @@ void main() {
   group('SettingsPage', () {
     final mockedSharedPreferences = MockedSharedPreferences();
     final preferencesService = PreferencesService(mockedSharedPreferences);
-    var store = SettingsStore(preferencesService);
+    final store = SettingsStore(preferencesService);
     final pageFinder = find.byType(SettingsPage);
     final useDarkModeSettingFinder = find.byKey(Keys.useDarkModeSettingKey);
     testWidgets('Dark mode setting starts at off', (WidgetTester tester) async {
@@ -32,13 +32,13 @@ void main() {
   });
 }
 
-Future _pumpWidget(WidgetTester tester, SettingsStore store) async {
+Future<void> _pumpWidget(WidgetTester tester, SettingsStore store) async {
   await tester.pumpWidget(
     Provider<SettingsStore>(
       builder: (_) => store,
       child: MaterialApp(
         home: Scaffold(
-          body: SettingsPage(),
+          body: const SettingsPage(),
         ),
       ),
     ),
