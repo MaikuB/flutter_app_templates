@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 void main() {
   group('GalleryPage', () {
     final pageFinder = find.byType(GalleryPage);
-    var store = GalleryStore();
+    final store = GalleryStore();
     testWidgets('Counter starts at zero', (WidgetTester tester) async {
       await _pumpWidget(tester, store);
 
@@ -26,12 +26,12 @@ void main() {
   });
 }
 
-Future _pumpWidget(WidgetTester tester, GalleryStore store) async {
+Future<void> _pumpWidget(WidgetTester tester, GalleryStore store) async {
   await tester.pumpWidget(
     Provider<GalleryStore>(
       builder: (_) => store,
       child: MaterialApp(
-        home: GalleryPage(),
+        home: const GalleryPage(),
       ),
     ),
   );

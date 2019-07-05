@@ -5,7 +5,7 @@ import '../constants/keys.dart';
 import '../stores/notifications_store.dart';
 
 class NotificationsPage extends StatelessWidget {
-  NotificationsPage({Key key}) : super(key: key);
+  const NotificationsPage({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

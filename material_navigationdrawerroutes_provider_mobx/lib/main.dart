@@ -5,14 +5,14 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'constants/keys.dart';
 import 'constants/routes.dart';
-import 'services/preferences_service.dart';
-import 'stores/home_store.dart';
-import 'stores/gallery_store.dart';
-import 'stores/slideshow_store.dart';
-import 'stores/settings_store.dart';
-import 'pages/home_page.dart';
 import 'pages/gallery_page.dart';
+import 'pages/home_page.dart';
 import 'pages/slideshow_page.dart';
+import 'services/preferences_service.dart';
+import 'stores/gallery_store.dart';
+import 'stores/home_store.dart';
+import 'stores/settings_store.dart';
+import 'stores/slideshow_store.dart';
 
 void main() async {
   final sharedPreferences = await SharedPreferences.getInstance();
@@ -20,9 +20,9 @@ void main() async {
 }
 
 class App extends StatelessWidget {
-  final SharedPreferences sharedPreferences;
+  const App(this.sharedPreferences);
 
-  App(this.sharedPreferences);
+  final SharedPreferences sharedPreferences;
 
   @override
   Widget build(BuildContext context) {
@@ -54,13 +54,14 @@ class App extends StatelessWidget {
                 theme: store.useDarkMode ? ThemeData.dark() : ThemeData.light(),
                 initialRoute: Routes.home,
                 routes: {
-                  Routes.home: (context) => HomePage(key: Keys.homePageKey),
+                  Routes.home: (context) =>
+                      const HomePage(key: Keys.homePageKey),
                   Routes.gallery: (context) =>
-                      GalleryPage(key: Keys.galleryPageKey),
+                      const GalleryPage(key: Keys.galleryPageKey),
                   Routes.slideshow: (context) =>
-                      SlideshowPage(key: Keys.slideshowPageKey),
+                      const SlideshowPage(key: Keys.slideshowPageKey),
                   Routes.settings: (context) =>
-                      SettingsPage(key: Keys.settingsPageKey),
+                      const SettingsPage(key: Keys.settingsPageKey),
                 },
               );
             },

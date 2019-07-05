@@ -5,7 +5,7 @@ import '../constants/keys.dart';
 import '../stores/gallery_store.dart';
 
 class GalleryPage extends StatelessWidget {
-  GalleryPage({Key key}) : super(key: key);
+  const GalleryPage({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,7 @@ class GalleryPage extends StatelessWidget {
       builder: (context, store, _) {
         return Scaffold(
           appBar: AppBar(
-            title: Text('Gallery', key: Keys.galleryPageTitleKey),
+            title: const Text('Gallery', key: Keys.galleryPageTitleKey),
           ),
           body: Observer(
             builder: (context) {
@@ -26,12 +26,12 @@ class GalleryPage extends StatelessWidget {
             },
           ),
           floatingActionButton: FloatingActionButton(
-            key: Key('incrementButton'),
+            key: const Key('incrementButton'),
             onPressed: () {
               store.increment();
             },
             tooltip: 'Increment',
-            child: Icon(Icons.add),
+            child: const Icon(Icons.add),
           ),
         );
       },

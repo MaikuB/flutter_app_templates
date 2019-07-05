@@ -5,7 +5,7 @@ import '../constants/keys.dart';
 import '../stores/slideshow_store.dart';
 
 class SlideshowPage extends StatelessWidget {
-  SlideshowPage({Key key}) : super(key: key);
+  const SlideshowPage({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,7 @@ class SlideshowPage extends StatelessWidget {
       builder: (context, store, _) {
         return Scaffold(
           appBar: AppBar(
-            title: Text(
+            title: const Text(
               'Slideshow',
               key: Keys.slideshowPageTitleKey,
             ),
@@ -29,12 +29,12 @@ class SlideshowPage extends StatelessWidget {
             },
           ),
           floatingActionButton: FloatingActionButton(
-            key: Key('incrementButton'),
+            key: const Key('incrementButton'),
             onPressed: () {
               store.increment();
             },
             tooltip: 'Increment',
-            child: Icon(Icons.add),
+            child: const Icon(Icons.add),
           ),
         );
       },

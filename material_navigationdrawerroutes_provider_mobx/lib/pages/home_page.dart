@@ -6,7 +6,7 @@ import '../constants/routes.dart';
 import '../stores/home_store.dart';
 
 class HomePage extends StatelessWidget {
-  HomePage({Key key}) : super(key: key);
+  const HomePage({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class HomePage extends StatelessWidget {
       builder: (context, store, _) {
         return Scaffold(
           appBar: AppBar(
-            title: Text('Home', key: Keys.homePageTitleKey),
+            title: const Text('Home', key: Keys.homePageTitleKey),
           ),
           body: Observer(
             builder: (context) {
@@ -30,7 +30,7 @@ class HomePage extends StatelessWidget {
             child: ListView(
               padding: EdgeInsets.zero,
               children: [
-                UserAccountsDrawerHeader(
+                const UserAccountsDrawerHeader(
                   accountName: Text('User'),
                   accountEmail: Text('user@email.com'),
                   currentAccountPicture: CircleAvatar(
@@ -39,16 +39,16 @@ class HomePage extends StatelessWidget {
                 ),
                 ListTile(
                   key: Keys.homeDrawerItemKey,
-                  leading: Icon(Icons.home),
-                  title: Text('Home'),
+                  leading: const Icon(Icons.home),
+                  title: const Text('Home'),
                   onTap: () {
                     Navigator.pop(context);
                   },
                 ),
                 ListTile(
                   key: Keys.galleryDrawerItemKey,
-                  leading: Icon(Icons.photo_library),
-                  title: Text('Gallery'),
+                  leading: const Icon(Icons.photo_library),
+                  title: const Text('Gallery'),
                   onTap: () async {
                     Navigator.pop(context);
                     Navigator.pushNamed(context, Routes.gallery);
@@ -56,8 +56,8 @@ class HomePage extends StatelessWidget {
                 ),
                 ListTile(
                   key: Keys.slideshowDrawerItemKey,
-                  leading: Icon(Icons.slideshow),
-                  title: Text('Slideshow'),
+                  leading: const Icon(Icons.slideshow),
+                  title: const Text('Slideshow'),
                   onTap: () async {
                     Navigator.pop(context);
                     Navigator.pushNamed(context, Routes.slideshow);
@@ -66,8 +66,8 @@ class HomePage extends StatelessWidget {
                 Divider(),
                 ListTile(
                   key: Keys.settingsDrawerItemKey,
-                  leading: Icon(Icons.settings),
-                  title: Text('Settings'),
+                  leading: const Icon(Icons.settings),
+                  title: const Text('Settings'),
                   onTap: () async {
                     Navigator.pop(context);
                     Navigator.pushNamed(context, Routes.settings);
@@ -77,12 +77,12 @@ class HomePage extends StatelessWidget {
             ),
           ),
           floatingActionButton: FloatingActionButton(
-            key: Key('incrementButton'),
+            key: const Key('incrementButton'),
             onPressed: () {
               store.increment();
             },
             tooltip: 'Increment',
-            child: Icon(Icons.add),
+            child: const Icon(Icons.add),
           ),
         );
       },
