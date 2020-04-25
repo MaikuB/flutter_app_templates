@@ -71,7 +71,7 @@ task:
     - xcrun simctl list devicetypes
     - xcrun simctl list runtimes
     # create simulator
-    - udid=$(xcrun simctl create "iPhone X" com.apple.CoreSimulator.SimDeviceType.iPhone-X com.apple.CoreSimulator.SimRuntime.iOS-13-4)
+    - udid=$(xcrun simctl create "iPhone X" com.apple.CoreSimulator.SimDeviceType.iPhone-X com.apple.CoreSimulator.SimRuntime.iOS-13-3)
     # boot simulator
     - xcrun simctl boot $udid
   test_script: 
