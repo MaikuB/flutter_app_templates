@@ -15,7 +15,8 @@ import 'stores/home_store.dart';
 import 'stores/settings_store.dart';
 import 'stores/slideshow_store.dart';
 
-void main() async {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   final sharedPreferences = await SharedPreferences.getInstance();
   runApp(App(sharedPreferences));
 }
@@ -30,22 +31,22 @@ class App extends StatelessWidget {
     return MultiProvider(
       providers: [
         Provider<DestinationsStore>(
-          builder: (_) => DestinationsStore(),
+          create: (_) => DestinationsStore(),
         ),
         Provider<HomeStore>(
-          builder: (_) => HomeStore(),
+          create: (_) => HomeStore(),
         ),
         Provider<GalleryStore>(
-          builder: (_) => GalleryStore(),
+          create: (_) => GalleryStore(),
         ),
         Provider<SlideshowStore>(
-          builder: (_) => SlideshowStore(),
+          create: (_) => SlideshowStore(),
         ),
         Provider<PreferencesService>(
-          builder: (_) => PreferencesService(sharedPreferences),
+          create: (_) => PreferencesService(sharedPreferences),
         ),
         ProxyProvider<PreferencesService, SettingsStore>(
-          builder: (_, preferencesService, __) =>
+          update: (_, preferencesService, __) =>
               SettingsStore(preferencesService),
         )
       ],
@@ -93,13 +94,16 @@ class AppScaffold extends StatelessWidget {
                       onPressed: () {
                         switch (store.selectedDestination) {
                           case Destination.Home:
-                            Provider.of<HomeStore>(context).increment();
+                            Provider.of<HomeStore>(context, listen: false)
+                                .increment();
                             break;
                           case Destination.Gallery:
-                            Provider.of<GalleryStore>(context).increment();
+                            Provider.of<GalleryStore>(context, listen: false)
+                                .increment();
                             break;
                           case Destination.Slideshow:
-                            Provider.of<SlideshowStore>(context).increment();
+                            Provider.of<SlideshowStore>(context, listen: false)
+                                .increment();
                             break;
                           default:
                             break;
@@ -217,13 +221,24 @@ class PageContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     switch (destination) {
       case Destination.Gallery:
-        return const GalleryPage(key: Keys.galleryPageKey);
+        return Consumer<GalleryStore>(
+          builder: (_, store, __) =>
+              GalleryPage(store, key: Keys.galleryPageKey),
+        );
       case Destination.Slideshow:
-        return const SlideshowPage(key: Keys.slideshowPageKey);
+        return Consumer<SlideshowStore>(
+          builder: (_, store, __) =>
+              SlideshowPage(store, key: Keys.slideshowPageKey),
+        );
       case Destination.Settings:
-        return const SettingsPage(key: Keys.settingsPageKey);
+        return Consumer<SettingsStore>(
+          builder: (_, store, __) =>
+              SettingsPage(store, key: Keys.settingsPageKey),
+        );
       default:
-        return const HomePage(key: Keys.homePageKey);
+        return Consumer<HomeStore>(
+          builder: (_, store, __) => HomePage(store, key: Keys.homePageKey),
+        );
     }
   }
 }

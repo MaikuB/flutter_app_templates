@@ -29,19 +29,19 @@ class App extends StatelessWidget {
     return MultiProvider(
       providers: [
         Provider<HomeStore>(
-          builder: (_) => HomeStore(),
+          create: (_) => HomeStore(),
         ),
         Provider<GalleryStore>(
-          builder: (_) => GalleryStore(),
+          create: (_) => GalleryStore(),
         ),
         Provider<SlideshowStore>(
-          builder: (_) => SlideshowStore(),
+          create: (_) => SlideshowStore(),
         ),
         Provider<PreferencesService>(
-          builder: (_) => PreferencesService(sharedPreferences),
+          create: (_) => PreferencesService(sharedPreferences),
         ),
         ProxyProvider<PreferencesService, SettingsStore>(
-          builder: (_, preferencesService, ___) =>
+          update: (_, preferencesService, ___) =>
               SettingsStore(preferencesService),
         )
       ],
@@ -54,14 +54,22 @@ class App extends StatelessWidget {
                 theme: store.useDarkMode ? ThemeData.dark() : ThemeData.light(),
                 initialRoute: Routes.home,
                 routes: {
-                  Routes.home: (context) =>
-                      const HomePage(key: Keys.homePageKey),
-                  Routes.gallery: (context) =>
-                      const GalleryPage(key: Keys.galleryPageKey),
-                  Routes.slideshow: (context) =>
-                      const SlideshowPage(key: Keys.slideshowPageKey),
-                  Routes.settings: (context) =>
-                      const SettingsPage(key: Keys.settingsPageKey),
+                  Routes.home: (_) => Consumer<HomeStore>(
+                        builder: (_, store, __) =>
+                            HomePage(store, key: Keys.homePageKey),
+                      ),
+                  Routes.gallery: (_) => Consumer<GalleryStore>(
+                        builder: (_, store, __) =>
+                            GalleryPage(store, key: Keys.galleryPageKey),
+                      ),
+                  Routes.slideshow: (context) => Consumer<SlideshowStore>(
+                        builder: (_, store, __) =>
+                            SlideshowPage(store, key: Keys.slideshowPageKey),
+                      ),
+                  Routes.settings: (context) => Consumer<SettingsStore>(
+                        builder: (_, store, __) =>
+                            SettingsPage(store, key: Keys.settingsPageKey),
+                      ),
                 },
               );
             },

@@ -30,7 +30,7 @@ The application is structured as follows:
 To execute unit tests, run the following command from the root folder of the application
 
 ```
-flutter test test/**/*.dart
+flutter test
 ```
 
 ## Executing integration tests

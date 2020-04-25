@@ -15,7 +15,8 @@ import 'stores/home_store.dart';
 import 'stores/notifications_store.dart';
 import 'stores/settings_store.dart';
 
-void main() async {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   final sharedPreferences = await SharedPreferences.getInstance();
   runApp(App(sharedPreferences));
 }
@@ -30,22 +31,22 @@ class App extends StatelessWidget {
     return MultiProvider(
       providers: [
         Provider<DestinationsStore>(
-          builder: (_) => DestinationsStore(),
+          create: (_) => DestinationsStore(),
         ),
         Provider<HomeStore>(
-          builder: (_) => HomeStore(),
+          create: (_) => HomeStore(),
         ),
         Provider<DashboardStore>(
-          builder: (_) => DashboardStore(),
+          create: (_) => DashboardStore(),
         ),
         Provider<NotificationsStore>(
-          builder: (_) => NotificationsStore(),
+          create: (_) => NotificationsStore(),
         ),
         Provider<PreferencesService>(
-          builder: (_) => PreferencesService(sharedPreferences),
+          create: (_) => PreferencesService(sharedPreferences),
         ),
         ProxyProvider<PreferencesService, SettingsStore>(
-          builder: (_, preferencesService, __) =>
+          update: (_, preferencesService, __) =>
               SettingsStore(preferencesService),
         ),
       ],
@@ -78,15 +79,18 @@ class App extends StatelessWidget {
                                   onPressed: () {
                                     switch (store.selectedDestination) {
                                       case Destination.Home:
-                                        Provider.of<HomeStore>(context)
+                                        Provider.of<HomeStore>(context,
+                                                listen: false)
                                             .increment();
                                         break;
                                       case Destination.Dashboard:
-                                        Provider.of<DashboardStore>(context)
+                                        Provider.of<DashboardStore>(context,
+                                                listen: false)
                                             .increment();
                                         break;
                                       case Destination.Notifications:
-                                        Provider.of<NotificationsStore>(context)
+                                        Provider.of<NotificationsStore>(context,
+                                                listen: false)
                                             .increment();
                                         break;
                                       case Destination.Settings:
@@ -167,6 +171,8 @@ class AppBottomNavigationBar extends StatelessWidget {
                 icon: Icon(Icons.settings),
                 title: Text('Settings'),
               );
+            default:
+              return null;
           }
         },
       ).toList(),
@@ -184,13 +190,24 @@ class PageContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     switch (destination) {
       case Destination.Dashboard:
-        return const DashboardPage(key: Keys.dashboardPageKey);
+        return Consumer<DashboardStore>(
+          builder: (_, store, __) =>
+              DashboardPage(store, key: Keys.dashboardPageKey),
+        );
       case Destination.Notifications:
-        return const NotificationsPage(key: Keys.notificationsPageKey);
+        return Consumer<NotificationsStore>(
+          builder: (_, store, __) =>
+              NotificationsPage(store, key: Keys.notificationsPageKey),
+        );
       case Destination.Settings:
-        return const SettingsPage(key: Keys.settingsPageKey);
+        return Consumer<SettingsStore>(
+          builder: (_, store, __) =>
+              SettingsPage(store, key: Keys.settingsPageKey),
+        );
       default:
-        return const HomePage(key: Keys.homePageKey);
+        return Consumer<HomeStore>(
+          builder: (_, store, __) => HomePage(store, key: Keys.homePageKey),
+        );
     }
   }
 }

@@ -35,7 +35,7 @@ More details on how state is managed and how the application looks can be found 
 To execute unit tests, run the following command from the root folder of the application
 
 ```
-flutter test test/**/*.dart
+flutter test
 ```
 
 ## Executing integration tests
