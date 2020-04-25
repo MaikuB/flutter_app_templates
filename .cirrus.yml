@@ -11,7 +11,8 @@ task:
     folder: ~/.pub-cache
   test_script:
     - cd $template
-    - flutter test
+    - flutter create .
+    - flutter pub run build_runner build --delete-conflicting-outputs
 
 task:
   name: Integration tests for $template (Android)
@@ -34,6 +35,7 @@ task:
   create_native_projects_script:
     - cd $template
     - flutter create .
+    - flutter pub run build_runner build --delete-conflicting-outputs
   kvm_script: sudo chown cirrus:cirrus /dev/kvm
   install_images_script: sdkmanager "system-images;android-$EMULATOR_API_LEVEL;$ANDROID_ABI"
   create_device_script:
@@ -64,6 +66,7 @@ task:
   create_native_projects_script:
     - cd $template
     - flutter create .
+    - flutter pub run build_runner build --delete-conflicting-outputs
   setup_script:
     # create simulator
     - udid=$(xcrun simctl create "iPhone X" com.apple.CoreSimulator.SimDeviceType.iPhone-X com.apple.CoreSimulator.SimRuntime.iOS-12-0)
