@@ -16,8 +16,8 @@ task:
 
 task:
   name: Integration tests for $template (Android)
-  only_if: $CIRRUS_PR == ''
-  skip: "!changesInclude('.cirrus.yml', '$template/*', '$template/**/*')"
+  # only_if: $CIRRUS_PR == ''
+  # skip: "!changesInclude('.cirrus.yml', '$template/*', '$template/**/*')"
   env:
     EMULATOR_API_LEVEL: 28
     ANDROID_ABI: "default;x86"
@@ -50,8 +50,8 @@ task:
 
 task:
   name: Integration tests for $template (iOS)
-  only_if: $CIRRUS_PR == ''
-  skip: "!changesInclude('.cirrus.yml', '$template/*', '$template/**/*')"
+  # only_if: $CIRRUS_PR == ''
+  # skip: "!changesInclude('.cirrus.yml', '$template/*', '$template/**/*')"
   osx_instance:
     image: catalina-flutter
   env:
