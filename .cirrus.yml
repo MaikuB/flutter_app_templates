@@ -68,6 +68,8 @@ task:
     - flutter create .
     - flutter pub run build_runner build --delete-conflicting-outputs
   setup_script:
+    - xcrun simctl list devicetypes
+    - xcrun simctl list runtimes
     # create simulator
     - udid=$(xcrun simctl create "iPhone X" com.apple.CoreSimulator.SimDeviceType.iPhone-X com.apple.CoreSimulator.SimRuntime.iOS-13-4)
     # boot simulator
