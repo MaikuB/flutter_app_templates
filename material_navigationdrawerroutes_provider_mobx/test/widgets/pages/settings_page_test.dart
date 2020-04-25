@@ -35,9 +35,11 @@ void main() {
 Future<void> _pumpWidget(WidgetTester tester, SettingsStore store) async {
   await tester.pumpWidget(
     Provider<SettingsStore>(
-      builder: (_) => store,
+      create: (_) => store,
       child: MaterialApp(
-        home: const SettingsPage(),
+        home: Consumer<SettingsStore>(
+          builder: (_, store, __) => SettingsPage(store),
+        ),
       ),
     ),
   );

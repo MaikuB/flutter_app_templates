@@ -30,9 +30,11 @@ void main() {
 Future<void> _pumpWidget(WidgetTester tester, GalleryStore store) async {
   await tester.pumpWidget(
     Provider<GalleryStore>(
-      builder: (_) => store,
+      create: (_) => store,
       child: MaterialApp(
-        home: const GalleryPage(),
+        home: Consumer<GalleryStore>(
+          builder: (_, store, __) => GalleryPage(store),
+        ),
       ),
     ),
   );
